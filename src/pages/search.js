@@ -34,6 +34,5 @@ export default function SearchPage() {
           <TrackList Name={elem.title} Artist={elem.artists} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setTrackData({TrackName: elem.title, ArtistName: elem.artists[0].name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
         ))}
       </div>}
-
   </>)
 }
