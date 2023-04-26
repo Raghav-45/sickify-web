@@ -28,7 +28,7 @@ export default function LibraryPage() {
         </div>
       </div>
 
-      <div className='MusicBadgeScroller pl-3 pr-2 overflow-x-scroll'>
+      <div className='HideScrollbar pl-3 pr-2 overflow-x-scroll'>
         <div className='h-full w-max'>
           <span class="inline-block text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800">Default</span>
           <span class="inline-block text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-800">Playlists</span>
