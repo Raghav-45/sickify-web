@@ -27,7 +27,7 @@ export default function HomePage() {
         <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider'>Made for Raghav</h1>
         <h2 className='pr-4 pt-4 text-xs text-lightest uppercase tracking-wider mb-3'>See All</h2>
       </div>
-      <div className="HideScrollbar flex flex-row w-full overflow-x-scroll">
+      <div className="flex flex-row w-full overflow-x-scroll">
         {YT_offline[2].contents.map((elem) => (
           <MusicCard Name={elem.title} Artist={elem.title} Image={elem.thumbnails[elem.thumbnails.length - 1].url} />
         ))}
