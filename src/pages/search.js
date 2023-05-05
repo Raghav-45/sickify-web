@@ -10,7 +10,7 @@ export default function SearchPage() {
   return (
     <>
       <div className='flex text-white h-auto w-full px-2 pt-2 pb-2 bg-gradient-to-b from-white/10 to-dark'>
-        <input className='flex-auto h-8 rounded-full pl-4 text-black' value={SearchQuery} onChange={(e) => {setSearchQuery(e.target.value)}} placeholder='Search...'/>
+        <input className='flex-auto h-8 rounded-full pl-4 text-white bg-white/20 outline-none' value={SearchQuery} onChange={(e) => {setSearchQuery(e.target.value)}} placeholder='Search...'/>
       </div>
 
       {!SearchResults.Artists?.length == 0 && 
