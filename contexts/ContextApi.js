@@ -27,20 +27,25 @@ export default function ContextProvider({ children }) {
   useEffect(() => {
     const MakeData = async () => {
       if (musicData.hasOwnProperty('videoId')) {
-        console.log('Music Type - Track', musicData)
-        // setTrackData({TrackName: 'Sickify Web', ArtistName: 'track', Poster: '/icon-192x192.png', YTid: 'dQw4w9WgXcQ'})
-        setTrackData({TrackName: musicData.title, ArtistName: musicData.artists[0].name, Poster: musicData.thumbnails[0].url, YTid: musicData.videoId});
+        setTrackData({TrackName: musicData.title, ArtistName: ArrayToStr(musicData.artists), Poster: musicData.thumbnails.length>2 ? musicData.thumbnails[1].url : musicData.thumbnails[0].url, YTid: musicData.videoId});
       }
       if (musicData.hasOwnProperty('browseId')) {
-        console.log('Music Type - Album', musicData)
         const d = (await singleToTrack(musicData.browseId))
         // console.log(d)
-        setTrackData({TrackName: d.tracks[0].title, ArtistName: d.tracks[0].album, Poster: d.thumbnails[0].url, YTid: d.tracks[0].videoId});
+        setTrackData({TrackName: d.tracks[0].title, ArtistName: ArrayToStr(d.artists), Poster: d.thumbnails.length>2 ? d.thumbnails[1].url : d.thumbnails[0].url, YTid: d.tracks[0].videoId});
       }
     }
     setIsPlaying(false)
     MakeData().then(setIsPlaying(true))
   }, [musicData, musicType])
+
+  function ArrayToStr(a) {
+    if (typeof(a) == 'object') {
+      const b = []
+      a.map((e) => b.push(e.name))
+      return b.join(", ")
+    } else { return a }
+  }
 
   async function singleToTrack(q) {
     const resp = await fetch('https://sickify-web-api.vercel.app/singletotrack?query=' + q)
