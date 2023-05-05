@@ -8,7 +8,7 @@ import { MusicCard } from '../../../components/MusicCard'
 export default function ArtistPage() {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(false)
-  const { setTrackData, setIsPlaying } = PlayerContext()
+  const { setTrackData, setIsPlaying, musicData, setMusicData, musicType, setMusicType } = PlayerContext()
 
   const router = useRouter()
   const { ArtistID } = router.query
@@ -48,7 +48,8 @@ export default function ArtistPage() {
     <div>
     {!data.songs?.results?.length == 0 && 
       data.songs.results.map((elem) => (
-        <TrackList Name={elem.title} Artist={elem.artists[0].name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setTrackData({TrackName: elem.title, ArtistName: elem.artists[0].name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
+        // <TrackList Name={elem.title} Artist={elem.artists[0].name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setMusicData(elem); setTrackData({TrackName: elem.title, ArtistName: elem.artists[0].name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
+        <TrackList Name={elem.title} Artist={elem.artists[0].name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setMusicData(elem); setIsPlaying(true);}} />
       ))}
     </div>
 
@@ -59,7 +60,8 @@ export default function ArtistPage() {
     <div>
     {!data.singles.results?.length == 0 && 
       data.singles.results.map((elem) => (
-        <TrackList Name={elem.title} Artist={data.name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setTrackData({TrackName: elem.title, ArtistName: data.name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
+        // <TrackList Name={elem.title} Artist={data.name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setMusicData(elem); setTrackData({TrackName: elem.title, ArtistName: data.name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
+        <TrackList Name={elem.title} Artist={data.name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setMusicData(elem); setIsPlaying(true);}} />
       ))}
     </div>
   </>)
