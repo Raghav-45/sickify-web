@@ -29,13 +29,12 @@ export default function ContextProvider({ children }) {
       if (musicData.hasOwnProperty('videoId')) {
         console.log('Music Type - Track', musicData)
         // setTrackData({TrackName: 'Sickify Web', ArtistName: 'track', Poster: '/icon-192x192.png', YTid: 'dQw4w9WgXcQ'})
+        setTrackData({TrackName: d.title, ArtistName: d.artists[0].name, Poster: d.thumbnails[0].url, YTid: d.videoId});
       }
       if (musicData.hasOwnProperty('browseId')) {
         console.log('Music Type - Album', musicData)
-        // setTrackData({TrackName: 'Sickify Web', ArtistName: 'Album', Poster: '/icon-192x192.png', YTid: 'dQw4w9WgXcQ'})
         const d = (await singleToTrack(musicData.browseId))
-        console.log(d)
-        // .tracks[0]
+        // console.log(d)
         setTrackData({TrackName: d.tracks[0].title, ArtistName: d.tracks[0].album, Poster: d.thumbnails[0].url, YTid: d.tracks[0].videoId});
       }
     }
