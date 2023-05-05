@@ -21,7 +21,7 @@ export default function Layout({ children }) {
           <Link href='/search' className='flex h-full w-full align-middle' replace><FiSearch className='m-auto'/></Link>
           <Link href='/library' className='flex h-full w-full align-middle' replace><BiLibrary className='m-auto'/></Link>
         </div>
-        {/* <YTPlayer/> */}
+        <YTPlayer/>
       </footer>
     </div>
   )
