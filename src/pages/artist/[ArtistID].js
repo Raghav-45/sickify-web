@@ -41,6 +41,17 @@ export default function ArtistPage() {
     </div></> : <p className='text-white'>Search Something...</p>}
 
     <div className='flex items-center justify-between'>
+      <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider'>Tracks</h1>
+    </div>
+    
+    <div>
+    {!data.songs?.results?.length == 0 && 
+    data.songs.results.map((elem) => (
+      <TrackList Name={elem.title} Artist={elem.artists[0].name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setTrackData({TrackName: elem.title, ArtistName: elem.artists[0].name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
+    ))}
+    </div>
+
+    <div className='flex items-center justify-between'>
       <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider'>Singles</h1>
     </div>
 
@@ -48,17 +59,6 @@ export default function ArtistPage() {
     {!data.singles.results?.length == 0 && 
     data.singles.results.map((elem) => (
       <TrackList Name={elem.title} Artist={data.name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setTrackData({TrackName: elem.title, ArtistName: data.name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
-    ))}
-    </div>
-
-    <div className='flex items-center justify-between'>
-      <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider'>Songs</h1>
-    </div>
-    
-    <div>
-    {!data.songs?.results?.length == 0 && 
-    data.songs.results.map((elem) => (
-      <TrackList Name={elem.title} Artist={elem.artists[0].name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setTrackData({TrackName: elem.title, ArtistName: elem.artists[0].name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
     ))}
     </div>
   </>)
