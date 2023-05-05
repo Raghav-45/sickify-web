@@ -18,8 +18,34 @@ export default function ContextProvider({ children }) {
   const [SearchQuery, setSearchQuery] = useState('')
   const [SearchResults, setSearchResults] = useState({Tracks: [], Artists: [],})
 
-  const [TrackData, setTrackData] = useState({TrackName: 'MusicName', ArtistName: 'ArtistName', Poster: 'https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png', YTid: 'dQw4w9WgXcQ',})
+  const [musicData, setMusicData] = useState({})
+  const [musicType, setMusicType] = useState('track')
+
+  const [TrackData, setTrackData] = useState({TrackName: 'Sickify Web', ArtistName: 'By - @aditya_raghav_45', Poster: '/icon-192x192.png', YTid: 'dQw4w9WgXcQ',})
   // const [PlayerData, setPlayerData] = useState({IsPlaying: false, TrackDuration: '00:00', TrackCurrentTime: '00:00'},)
+
+  useEffect(() => {
+    const MakeData = async () => {
+      if (musicData.hasOwnProperty('videoId')) {
+        console.log('Music Type - Track', musicData)
+        // setTrackData({TrackName: 'Sickify Web', ArtistName: 'track', Poster: '/icon-192x192.png', YTid: 'dQw4w9WgXcQ'})
+        setTrackData({TrackName: musicData.title, ArtistName: musicData.artists[0].name, Poster: musicData.thumbnails[0].url, YTid: musicData.videoId});
+      }
+      if (musicData.hasOwnProperty('browseId')) {
+        console.log('Music Type - Album', musicData)
+        const d = (await singleToTrack(musicData.browseId))
+        // console.log(d)
+        setTrackData({TrackName: d.tracks[0].title, ArtistName: d.tracks[0].album, Poster: d.thumbnails[0].url, YTid: d.tracks[0].videoId});
+      }
+    }
+    MakeData()
+  }, [musicData, musicType])
+
+  async function singleToTrack(q) {
+    const resp = await fetch('https://sickify-web-api.vercel.app/singletotrack?query=' + q)
+    const data = await resp.json()
+    return data
+  }
 
   const SearchContent = async (q) => {
     const Result = {Tracks: [], Artists: [],}
@@ -57,6 +83,8 @@ export default function ContextProvider({ children }) {
     IsBuffering, setIsBuffering,
     SearchQuery, setSearchQuery,
     TrackData, setTrackData,
+    musicData, setMusicData,
+    musicType, setMusicType,
     SearchResults,
   }
 
