@@ -1,6 +1,7 @@
 import { PlayerContext } from '../../contexts/ContextApi'
 import { FiSearch } from 'react-icons/fi'
 import { AiOutlinePlus } from 'react-icons/ai'
+import { BadgeButton } from '../../components/BadgeButton'
 
 export default function LibraryPage() {
   return (
@@ -30,14 +31,22 @@ export default function LibraryPage() {
 
       <div className='HideScrollbar pl-3 pr-2 overflow-x-scroll'>
         <div className='h-full w-max'>
-          <span class="inline-block text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800">Default</span>
-          <span class="inline-block text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-800">Playlists</span>
-          <span class="inline-block text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-red-100 text-red-800">Artists</span>
-          <span class="inline-block text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-green-100 text-green-800">Albums</span>
-          <span class="inline-block text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-yellow-100 text-yellow-800">Podcasts & Shows</span>
-          {/* <span class="inline-block text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-800">Indigo</span> */}
-          {/* <span class="inline-block text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800">Purple</span> */}
-          {/* <span class="inline-block text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-800">Pink</span> */}
+          {/* <span class="inline-block items-center text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800">Default</span> */}
+          {/* <span class="inline-block items-center text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-800">Playlists</span> */}
+          {/* <span class="inline-block items-center text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-red-100 text-red-800">Artists</span> */}
+          {/* <span class="inline-block items-center text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-green-100 text-green-800">Albums</span> */}
+          {/* <span class="inline-block items-center text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-yellow-100 text-yellow-800">Podcasts & Shows</span> */}
+          {/* <span class="inline-block items-center text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-800">Indigo</span> */}
+          {/* <span class="inline-block items-center text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800">Purple</span> */}
+          {/* <span class="inline-block items-center text-xs font-medium w-auto mr-2 px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-800">Pink</span> */}
+          <BadgeButton name={'Default'} />
+          <BadgeButton name={'Playlists'} colour={{text: 'text-gray-800', bg: 'bg-gray-100'}} />
+          <BadgeButton name={'Artists'} colour={{text: 'text-red-800', bg: 'bg-red-100'}} />
+          <BadgeButton name={'Albums'} colour={{text: 'text-green-800', bg: 'bg-green-100'}} />
+          <BadgeButton name={'Podcasts & Shows'} colour={{text: 'text-yellow-800', bg: 'bg-yellow-100'}} />
+          <BadgeButton name={'Indigo'} colour={{text: 'text-indigo-800', bg: 'bg-indigo-100'}} />
+          <BadgeButton name={'Purple'} colour={{text: 'text-purple-800', bg: 'bg-purple-100'}} />
+          <BadgeButton name={'Pink'} colour={{text: 'text-pink-800', bg: 'bg-pink-100'}} />
         </div>
       </div>
     </>
