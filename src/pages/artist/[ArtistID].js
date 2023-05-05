@@ -21,6 +21,7 @@ export default function ArtistPage() {
       .then((data) => {
         setData(data)
         setLoading(false)
+        console.log(data)
       })
   }, [ArtistID])
 
@@ -46,9 +47,9 @@ export default function ArtistPage() {
     
     <div>
     {!data.songs?.results?.length == 0 && 
-    data.songs.results.map((elem) => (
-      <TrackList Name={elem.title} Artist={elem.artists[0].name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setTrackData({TrackName: elem.title, ArtistName: elem.artists[0].name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
-    ))}
+      data.songs.results.map((elem) => (
+        <TrackList Name={elem.title} Artist={elem.artists[0].name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setTrackData({TrackName: elem.title, ArtistName: elem.artists[0].name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
+      ))}
     </div>
 
     <div className='flex items-center justify-between'>
@@ -57,9 +58,9 @@ export default function ArtistPage() {
 
     <div>
     {!data.singles.results?.length == 0 && 
-    data.singles.results.map((elem) => (
-      <TrackList Name={elem.title} Artist={data.name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setTrackData({TrackName: elem.title, ArtistName: data.name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
-    ))}
+      data.singles.results.map((elem) => (
+        <TrackList Name={elem.title} Artist={data.name} Image={elem.thumbnails[elem.thumbnails.length - 1].url} onPlayButton={() => {setTrackData({TrackName: elem.title, ArtistName: data.name, Poster: elem.thumbnails[0].url, YTid: elem.videoId}); setIsPlaying(true);}} />
+      ))}
     </div>
   </>)
 }
