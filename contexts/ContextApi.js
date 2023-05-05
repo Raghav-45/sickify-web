@@ -18,7 +18,10 @@ export default function ContextProvider({ children }) {
   const [SearchQuery, setSearchQuery] = useState('')
   const [SearchResults, setSearchResults] = useState({Tracks: [], Artists: [],})
 
-  const [TrackData, setTrackData] = useState({TrackName: 'MusicName', ArtistName: 'ArtistName', Poster: 'https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png', YTid: 'dQw4w9WgXcQ',})
+  const [musicData, setMusicData] = useState({})
+  const [musicType, setMusicType] = useState('track')
+
+  const [TrackData, setTrackData] = useState({TrackName: 'Sickify Web', ArtistName: 'By - @aditya_raghav_45', Poster: '/icon-192x192.png', YTid: 'dQw4w9WgXcQ',})
   // const [PlayerData, setPlayerData] = useState({IsPlaying: false, TrackDuration: '00:00', TrackCurrentTime: '00:00'},)
 
   useEffect(() => {
@@ -81,6 +84,8 @@ export default function ContextProvider({ children }) {
     IsBuffering, setIsBuffering,
     SearchQuery, setSearchQuery,
     TrackData, setTrackData,
+    musicData, setMusicData,
+    musicType, setMusicType,
     SearchResults,
   }
 
