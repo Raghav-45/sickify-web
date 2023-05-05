@@ -16,7 +16,7 @@ export default function ArtistPage() {
   useEffect(() => {
     if (!router.isReady) return
     setLoading(true)
-    fetch(`https://sickify-web-api.vercel.app/getartist?query=${ArtistID}`)
+    fetch(`https://ytmusicapi.adi4545aditya.repl.co/getartist?query=${ArtistID}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data)
