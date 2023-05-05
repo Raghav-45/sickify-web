@@ -29,7 +29,7 @@ export default function ContextProvider({ children }) {
       if (musicData.hasOwnProperty('videoId')) {
         console.log('Music Type - Track', musicData)
         // setTrackData({TrackName: 'Sickify Web', ArtistName: 'track', Poster: '/icon-192x192.png', YTid: 'dQw4w9WgXcQ'})
-        setTrackData({TrackName: d.title, ArtistName: d.artists[0].name, Poster: d.thumbnails[0].url, YTid: d.videoId});
+        setTrackData({TrackName: musicData.title, ArtistName: musicData.artists[0].name, Poster: musicData.thumbnails[0].url, YTid: musicData.videoId});
       }
       if (musicData.hasOwnProperty('browseId')) {
         console.log('Music Type - Album', musicData)
