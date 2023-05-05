@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md'
 
 export const AvatarIcon = () => {
