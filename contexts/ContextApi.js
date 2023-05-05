@@ -35,8 +35,7 @@ export default function ContextProvider({ children }) {
         setTrackData({TrackName: d.tracks[0].title, ArtistName: ArrayToStr(d.artists), Poster: d.thumbnails.length>2 ? d.thumbnails[1].url : d.thumbnails[0].url, YTid: d.tracks[0].videoId});
       }
     }
-    setIsPlaying(false)
-    MakeData().then(setIsPlaying(true))
+    MakeData()
   }, [musicData, musicType])
 
   function ArrayToStr(a) {
