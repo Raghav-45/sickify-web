@@ -32,7 +32,7 @@ export default function ContextProvider({ children }) {
       if (musicData.hasOwnProperty('browseId')) {
         const d = (await singleToTrack(musicData.browseId))
         // console.log(d)
-        setTrackData({TrackName: d.tracks[0].title, ArtistName: ArrayToStr(d.artists), Poster: d.thumbnails.length>2 ? d.thumbnails[1].url : d.thumbnails[0].url, YTid: d.tracks[0].videoId});
+        setTrackData({TrackName: d.tracks[0].title, ArtistName: ArrayToStr(d.artists), Poster: d.thumbnails.length>2 ? d.thumbnails[d.thumbnails.length - 1].url : d.thumbnails[0].url, YTid: d.tracks[0].videoId});
       }
     }
     MakeData()
