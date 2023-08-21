@@ -27,7 +27,7 @@ export default function ContextProvider({ children }) {
   useEffect(() => {
     const MakeData = async () => {
       if (musicData.hasOwnProperty('videoId')) {
-        setTrackData({TrackName: musicData.title, ArtistName: ArrayToStr(musicData.artists), Poster: musicData.thumbnails.length>2 ? musicData.thumbnails[1].url : musicData.thumbnails[0].url, YTid: musicData.videoId});
+        setTrackData({TrackName: musicData.title, ArtistName: ArrayToStr(musicData.artists), Poster: musicData.thumbnails.length>2 ? musicData.thumbnails[musicData.thumbnails.length - 1].url : musicData.thumbnails[0].url, YTid: musicData.videoId});
       }
       if (musicData.hasOwnProperty('browseId')) {
         const d = (await singleToTrack(musicData.browseId))
