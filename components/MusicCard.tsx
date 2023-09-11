@@ -41,8 +41,8 @@ const MusicCard: FC<MusicCardProps> = ({
             </button>
           </div>
           <Image
-            height={36}
-            width={36}
+            height={136}
+            width={136}
             className='h-full w-full'
             src={image}
             alt={name}
