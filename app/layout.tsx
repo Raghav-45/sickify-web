@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { Home, Search, Library } from 'lucide-react'
-import Player from '@/components/player'
+import Player from '@/components/Player'
 
 const inter = Inter({ subsets: ['latin'] })
 
