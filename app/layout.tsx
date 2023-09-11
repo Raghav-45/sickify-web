@@ -61,9 +61,27 @@ export default function RootLayout({
         <footer className='bg-gradient-to-t from-dark backdrop-blur-lg text-white fixed inset-x-0 bottom-0'>
           <Player />
           <div className='grid grid-cols-3 gap-0 h-14 mx-5 text-xl text-center'>
-            <Link href='/home' className='flex h-full w-full align-middle' replace><Home className='m-auto'/></Link>
-            <Link href='/search' className='flex h-full w-full align-middle' replace><Search className='m-auto'/></Link>
-            <Link href='/library' className='flex h-full w-full align-middle' replace><Library className='m-auto'/></Link>
+            <Link
+              href='/home'
+              className='flex h-full w-full align-middle'
+              replace
+            >
+              <Home className='m-auto' />
+            </Link>
+            <Link
+              href='/search'
+              className='flex h-full w-full align-middle'
+              replace
+            >
+              <Search className='m-auto' />
+            </Link>
+            <Link
+              href='/library'
+              className='flex h-full w-full align-middle'
+              replace
+            >
+              <Library className='m-auto' />
+            </Link>
           </div>
         </footer>
       </body>
