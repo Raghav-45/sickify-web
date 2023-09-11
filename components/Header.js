@@ -15,6 +15,4 @@ export const Header = () => {
         <h1>Good {greetByTime()}!</h1>
       </div>
       <AvatarIcon/>
-    </div>
-  )
 }

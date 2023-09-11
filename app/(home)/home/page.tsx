@@ -1,15 +1,9 @@
-import Player from '@/components/Player'
 import { FC } from 'react'
 
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
-  return (
-    <>
-      <p>rg</p>
-      <Player />
-    </>
-  )
+  return <p>rg</p>
 }
 
 export default page
