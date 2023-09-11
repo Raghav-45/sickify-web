@@ -54,7 +54,7 @@ export default function RootLayout({
       className={cn('text-white bg-black antialiased light', inter.className)}
     >
       <body className='min-h-screen bg-black antialiased'>
-        <div className='container max-w-7xl mx-auto h-full px-0'>
+        <div className='container max-w-7xl mx-auto h-full px-0 pb-40'>
           {children}
         </div>
 
