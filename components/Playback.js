@@ -53,7 +53,7 @@ export const Playback = () => {
           { isPlaying ? <FaPause/> : <FaPlay/> }
         </div>} */}
 
-        <div onClick={(e) => {setExpandPlayer(!ExpandPlayer)}} className='flex-none aspect-square h-full shadow-[0_4px_24px_rgb(0,0,0,50%)] overflow-hidden rounded-lg' style={{height: ExpandPlayer ? '170px' : '100%'}}>
+        <div onClick={(e) => {setExpandPlayer(!ExpandPlayer)}} className='flex-none aspect-square h-full shadow-[0_4px_24px_rgb(0,0,0,50%)] overflow-hidden rounded-lg' style={{height: ExpandPlayer ? '170px' : '100%', borderRadius: TrackData.TrackName == 'Sickify Web' && '100%'}}>
           <img src={TrackData.Poster} className='h-full w-full'/>
         </div>
         <div onClick={(e) => {setExpandPlayer(!ExpandPlayer)}} className={`flex flex-1 flex-col ml-2 align-middle`} style={{textAlign: ExpandPlayer ? 'center' : 'left'}}>
