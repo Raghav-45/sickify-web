@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <div className='px-3 py-2'>
         <div className='flex justify-items-end text-white items-center'>
-          <div className='flex-none relative z-10 border border-[#FCFCFD]/50 rounded-full mr-4 h-9 w-9'>
+          <div className='flex-none relative border border-[#FCFCFD]/50 rounded-full mr-4 h-9 w-9'>
             <div className='flex focus:outline-none rounded-full h-full w-full items-center'>
               <Image
                 height={36}
