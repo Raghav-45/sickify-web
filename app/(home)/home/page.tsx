@@ -27,7 +27,7 @@ const page: FC<pageProps> = ({}) => {
       </div>
 
       <SectionHeading name='Trending' />
-      <div className="flex flex-row w-full overflow-x-scroll">
+      <div className="flex w-full hide-scrollbar overflow-x-scroll">
         {YTKING_offline.map((elem) => (
           <MusicCard key={elem.title} name={elem.title} artist={elem.artists} image={elem.thumbnails[elem.thumbnails.length - 1].url} />
         ))}
