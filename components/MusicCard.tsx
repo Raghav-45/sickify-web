@@ -1,4 +1,3 @@
-import { Play } from 'lucide-react'
 import Image from 'next/image'
 import { FC } from 'react'
 import { Icons } from './Icons'
