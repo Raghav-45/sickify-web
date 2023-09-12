@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { Play } from 'lucide-react'
 import Image from 'next/image'
+import { Icons } from './Icons'
 
 interface playerProps {}
 
@@ -22,7 +22,7 @@ const Player: FC<playerProps> = ({}) => {
           <h2 className='text-xs text-white'>By - @raghav_aditya_45</h2>
         </div>
         <div className='flex flex-none flex-col order-last h-full justify-center items-center aspect-square'>
-          <Play className='text-white' />
+          <Icons.Play className='text-white h-5 w-5' />
         </div>
 
         {/* <div className='absolute h-[3px] bottom-0 left-0 mx-1 z-10 rounded-full bg-white/20 w-[0%] transition-all delay-0 duration-300 ease-in-out' style={{ width: `${((BufferDuration/MusicDuration)*100)}%` }}></div>
