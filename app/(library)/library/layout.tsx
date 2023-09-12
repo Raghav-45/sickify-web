@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className='bg-black sticky inset-x-0 top-0 z-10 pb-2'>
+      <div className='bg-black sticky inset-x-0 top-0 z-10 pb-4'>
         <div className='px-3 py-2'>
           <div className='flex justify-items-end text-white items-center'>
             <div className='flex-none relative border border-[#FCFCFD]/50 rounded-full mr-4 h-9 w-9'>
