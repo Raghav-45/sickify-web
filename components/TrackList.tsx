@@ -26,7 +26,7 @@ function ArrayToStr(a: string | ArtistType[]): string {
 
 const TrackList: FC<TrackListProps> = ({ name, artist, image, onClick }) => {
   return (
-    <div className='px-2 pt-2'>
+    <div className='px-2 first:pt-0 pt-2'>
       <div
         onClick={onClick}
         className='flex flex-row h-14 w-full p-2 bg-white/10 align-middle items-center overflow-hidden rounded-xl backdrop-blur-lg transition-all'
