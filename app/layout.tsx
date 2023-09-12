@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { Home, Search, Library } from 'lucide-react'
 import Player from '@/components/Player'
+import { Icons } from '@/components/Icons'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -66,7 +67,7 @@ export default function RootLayout({
               className='flex h-full w-full align-middle'
               replace
             >
-              <Home className='m-auto' />
+              <Icons.Home className='m-auto' />
             </Link>
             <Link
               href='/search'
