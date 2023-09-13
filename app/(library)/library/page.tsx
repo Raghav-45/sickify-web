@@ -18,7 +18,7 @@ const page: FC<pageProps> = async ({}) => {
   return (
     <div>
       {data &&
-// @ts-ignore
+        // @ts-ignore
         data.map((elem) => (
           <TrackList
             key={elem.title}

@@ -58,7 +58,7 @@ const page: FC<pageProps> = async ({}) => {
       <SectionHeading name='Made for You' />
       <div className='flex w-full hide-scrollbar overflow-x-scroll'>
         {data &&
-// @ts-ignore
+          // @ts-ignore
           data.map((elem) => (
             <MusicCard
               key={elem.title}
@@ -69,21 +69,22 @@ const page: FC<pageProps> = async ({}) => {
           ))}
       </div>
       {homepageData &&
-// @ts-ignore
+        // @ts-ignore
         homepageData.map((section) => (
           <>
             <SectionHeading name={section.title} />
             <div className='flex w-full hide-scrollbar overflow-x-scroll'>
               {
-// @ts-ignore
-section.contents.map((elem) => (
-                <MusicCard
-                  key={elem.title}
-                  name={elem.title}
-                  artist={elem.title}
-                  image={elem.thumbnails[elem.thumbnails.length - 1].url}
-                />
-              ))}
+                // @ts-ignore
+                section.contents.map((elem) => (
+                  <MusicCard
+                    key={elem.title}
+                    name={elem.title}
+                    artist={elem.title}
+                    image={elem.thumbnails[elem.thumbnails.length - 1].url}
+                  />
+                ))
+              }
             </div>
           </>
         ))}
