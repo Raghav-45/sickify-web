@@ -29,7 +29,7 @@ const Playback: FC<PlaybackProps> = ({}) => {
     return (
       // Load the YouTube player
       <ReactPlayer
-        // style={{ display: 'none' }}
+        style={{ display: 'none' }}
         url={`https://music.youtube.com/watch?v=dQw4w9WgXcQ`}
         height={opts.height}
         width={opts.width}
