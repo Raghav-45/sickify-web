@@ -10,7 +10,7 @@ const Player: FC<playerProps> = ({}) => {
   return (
     <div className='px-2 pt-2'>
       <div className='relative flex flex-row h-14 w-full p-2 bg-white/10 align-middle items-center overflow-hidden rounded-xl backdrop-blur-lg transition-all'>
-        <div className='flex-none aspect-square h-full shadow-[0_4px_24px_rgb(0,0,0,50%)] overflow-hidden rounded-lg'>
+        <div className='flex-none aspect-square h-full shadow-[0_4px_24px_rgb(0,0,0,50%)] overflow-hidden rounded-full'>
           <Image
             height={36}
             width={36}
