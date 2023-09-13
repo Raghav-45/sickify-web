@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Home, Search, Library } from 'lucide-react'
 import Player from '@/components/Player'
 import { Icons } from '@/components/Icons'
+import Providers from '@/components/Providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -55,36 +56,38 @@ export default function RootLayout({
       className={cn('text-white bg-black antialiased light', inter.className)}
     >
       <body className='min-h-screen bg-black antialiased'>
-        <div className='container max-w-7xl mx-auto h-full px-0 pb-40'>
-          {children}
-        </div>
-
-        <footer className='bg-gradient-to-t from-dark backdrop-blur-lg text-white fixed inset-x-0 bottom-0'>
-          <Player />
-          <div className='grid grid-cols-3 gap-0 h-14 mx-5 text-xl text-center'>
-            <Link
-              href='/home'
-              className='flex h-full w-full align-middle'
-              replace
-            >
-              <Icons.Home className='m-auto' />
-            </Link>
-            <Link
-              href='/search'
-              className='flex h-full w-full align-middle'
-              replace
-            >
-              <Search className='m-auto' />
-            </Link>
-            <Link
-              href='/library'
-              className='flex h-full w-full align-middle'
-              replace
-            >
-              <Library className='m-auto' />
-            </Link>
+        <Providers>
+          <div className='container max-w-7xl mx-auto h-full px-0 pb-40'>
+            {children}
           </div>
-        </footer>
+
+          <footer className='bg-gradient-to-t from-dark backdrop-blur-lg text-white fixed inset-x-0 bottom-0'>
+            <Player />
+            <div className='grid grid-cols-3 gap-0 h-14 mx-5 text-xl text-center'>
+              <Link
+                href='/home'
+                className='flex h-full w-full align-middle'
+                replace
+              >
+                <Icons.Home className='m-auto' />
+              </Link>
+              <Link
+                href='/search'
+                className='flex h-full w-full align-middle'
+                replace
+              >
+                <Search className='m-auto' />
+              </Link>
+              <Link
+                href='/library'
+                className='flex h-full w-full align-middle'
+                replace
+              >
+                <Library className='m-auto' />
+              </Link>
+            </div>
+          </footer>
+        </Providers>
       </body>
     </html>
   )
