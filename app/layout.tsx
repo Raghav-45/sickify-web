@@ -7,6 +7,7 @@ import { Home, Search, Library } from 'lucide-react'
 import Player from '@/components/Player'
 import { Icons } from '@/components/Icons'
 import Providers from '@/components/Providers'
+import Playback from '@/components/Playback'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -63,6 +64,7 @@ export default function RootLayout({
 
           <footer className='bg-gradient-to-t from-dark backdrop-blur-lg text-white fixed inset-x-0 bottom-0'>
             <Player />
+            <Playback />
             <div className='grid grid-cols-3 gap-0 h-14 mx-5 text-xl text-center'>
               <Link
                 href='/home'
