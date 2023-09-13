@@ -25,32 +25,29 @@ const Playback: FC<PlaybackProps> = ({}) => {
       autoplay: 1,
     },
   }
-  // const opts = {
-  //   height: '100%',
-  //   width: '100%',
-  //   playerVars: {
-  //     autoplay: 1,
-  //   },
-  // }
-  return (
-    // Load the YouTube player
-    <ReactPlayer
-      // style={{ display: 'none' }}
-      url={`https://music.youtube.com/watch?v=dQw4w9WgXcQ`}
-      height={opts.height}
-      width={opts.width}
-      // playing={isPlaying}
-      controls={false}
-      // onBuffer={setIsBuffering(true)}
-      // onBufferEnd={setIsBuffering(false)}
-      // onDuration={(e) => setMusicDuration(e)}
-      muted={false}
-      // onProgress={(e) => {
-      //   setMusicCurrentTime(e.playedSeconds)
-      //   setBufferDuration(e.loadedSeconds)
-      // }}
-    />
-  )
+  if (typeof window !== undefined) {
+    return (
+      // Load the YouTube player
+      <ReactPlayer
+        // style={{ display: 'none' }}
+        url={`https://music.youtube.com/watch?v=dQw4w9WgXcQ`}
+        height={opts.height}
+        width={opts.width}
+        // playing={isPlaying}
+        controls={false}
+        // onBuffer={setIsBuffering(true)}
+        // onBufferEnd={setIsBuffering(false)}
+        // onDuration={(e) => setMusicDuration(e)}
+        muted={false}
+        // onProgress={(e) => {
+        //   setMusicCurrentTime(e.playedSeconds)
+        //   setBufferDuration(e.loadedSeconds)
+        // }}
+      />
+    )
+  } else {
+    null
+  }
 }
 
 export default Playback
