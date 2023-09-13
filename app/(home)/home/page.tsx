@@ -5,6 +5,76 @@ import { FC } from 'react'
 
 interface pageProps {}
 
+interface Album {
+  id: string
+  name: string
+}
+
+interface Artist {
+  id: string
+  name: string
+}
+
+interface Thumbnail {
+  height: number
+  url: string
+  width: number
+}
+
+interface Video {
+  id: string
+  videoType: string
+}
+
+interface FeedbackTokens {
+  add: null | any
+  remove: null | any
+}
+
+interface Song {
+  album: Album
+  artists: Artist[]
+  category: string
+  duration: string
+  duration_seconds: number
+  feedbackTokens: FeedbackTokens
+  isExplicit: boolean
+  resultType: string
+  thumbnails: Thumbnail[]
+  title: string
+  videoId: string
+  videoType: string
+  year: null | number
+}
+
+interface SongData {
+  album: Album
+  artists: Artist[]
+  isExplicit: boolean
+  thumbnails: Thumbnail[]
+  title: string
+  videoId: string
+}
+
+interface Content {
+  album?: Album
+  artists?: Album[]
+  isExplicit?: boolean
+  thumbnails: Thumbnail[]
+  title: string
+  videoID?: string
+  description?: string
+  playlistID?: string
+  views?: string
+  browseID?: string
+  year?: string
+}
+
+interface Homepage {
+  contents: SongData[]
+  title: string
+}
+
 const getData = async () => {
   const res = await fetch(
     'https://sickify-web-api.vercel.app/search/songs?query=arijit singh songs'
@@ -24,8 +94,8 @@ async function getHomePage() {
 }
 
 const page: FC<pageProps> = async ({}) => {
-  const data = await getData()
-  const homepageData = await getHomePage()
+  const data: Song[] = await getData()
+  const homepageData: Homepage[] = await getHomePage()
   return (
     <>
       <div className='grid grid-cols-2 gap-2 w-full px-2 pt-2 mb-4'>
@@ -58,7 +128,6 @@ const page: FC<pageProps> = async ({}) => {
       <SectionHeading name='Made for You' />
       <div className='flex w-full hide-scrollbar overflow-x-scroll'>
         {data &&
-          // @ts-ignore
           data.map((elem) => (
             <MusicCard
               key={elem.title}
@@ -69,22 +138,18 @@ const page: FC<pageProps> = async ({}) => {
           ))}
       </div>
       {homepageData &&
-        // @ts-ignore
         homepageData.map((section) => (
           <>
             <SectionHeading name={section.title} />
             <div className='flex w-full hide-scrollbar overflow-x-scroll'>
-              {
-                // @ts-ignore
-                section.contents.map((elem) => (
-                  <MusicCard
-                    key={elem.title}
-                    name={elem.title}
-                    artist={elem.title}
-                    image={elem.thumbnails[elem.thumbnails.length - 1].url}
-                  />
-                ))
-              }
+              {section.contents.map((elem) => (
+                <MusicCard
+                  key={elem.title}
+                  name={elem.title}
+                  artist={elem.title}
+                  image={elem.thumbnails[elem.thumbnails.length - 1].url}
+                />
+              ))}
             </div>
           </>
         ))}
