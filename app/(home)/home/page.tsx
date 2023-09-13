@@ -74,7 +74,9 @@ const page: FC<pageProps> = async ({}) => {
           <>
             <SectionHeading name={section.title} />
             <div className='flex w-full hide-scrollbar overflow-x-scroll'>
-              {section.contents.map((elem) => (
+              {
+// @ts-ignore
+section.contents.map((elem) => (
                 <MusicCard
                   key={elem.title}
                   name={elem.title}
