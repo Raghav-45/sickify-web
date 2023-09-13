@@ -1,3 +1,4 @@
+import Playback from '@/components/Playback'
 import { FC } from 'react'
 
 interface pageProps {}
@@ -28,6 +29,7 @@ const page: FC<pageProps> = ({}) => {
         className='flex-auto h-8 rounded-full pl-4 text-white bg-white/20 outline-none'
         placeholder={getRandomPlaceholderText() || 'Search...'}
       />
+      <Playback />
     </div>
   )
 }
