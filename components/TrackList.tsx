@@ -40,9 +40,9 @@ const TrackList: FC<TrackListProps> = ({ name, artist, image, onClick }) => {
             alt={name}
           />
         </div>
-        <div className='flex flex-1 flex-col ml-2 text-left align-middle transition-all duration-100 delay-200'>
-          <h1 className='text-sm font-semibold text-white'>{name}</h1>
-          <h2 className='text-xs text-white'>Track • {ArrayToStr(artist)}</h2>
+        <div className='flex flex-1 flex-col ml-2 text-left align-middle transition-all duration-100 delay-200 overflow-hidden'>
+          <h1 className='text-sm font-semibold text-white truncate'>{name}</h1>
+          <h2 className='text-xs text-white truncate'>{ArrayToStr(artist)}</h2>
         </div>
       </div>
     </div>
