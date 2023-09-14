@@ -4,8 +4,8 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { FC, useCallback, useState } from 'react'
 import { debounce } from 'lodash'
-import MusicCard from './MusicCard'
 import TrackList from './TrackList'
+import SectionHeading from './SectionHeading'
 
 interface SearchBarProps {}
 
@@ -120,10 +120,12 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
 
   const request = debounce(async () => {
     refetch()
-  }, 450)
+  }, 350)
 
   const debounceRequest = useCallback(() => {
     request()
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const MusicList = ({ array }: { array: Song[] }) => {
@@ -153,17 +155,10 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
 
       {input && queryResults && (
         <>
-          <div className='flex items-center justify-between'>
-            <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider'>
-              Top Results
-            </h1>
-            <h2 className='pr-4 pt-4 text-xs text-lightest uppercase tracking-wider mb-3'>
-              See All
-            </h2>
-          </div>
+          <SectionHeading name='Top Results' />
 
           {/* <div className='flex flex-row w-full overflow-x-auto text-white'> */}
-          <div className='flex flex-col w-full overflow-y-auto text-white'>
+          <div className='flex flex-col w-full overflow-y-auto text-white pt-2'>
             {isFetching ? (
               <p>Searching...</p>
             ) : (
