@@ -5,8 +5,8 @@ import { FC } from 'react'
 
 interface pageProps {}
 
-const Page: FC<pageProps> = ({}) => {
+const page: FC<pageProps> = ({}) => {
   return <SearchBar />
 }
 
-export default Page
+export default page
