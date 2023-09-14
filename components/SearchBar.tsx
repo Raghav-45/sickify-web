@@ -6,6 +6,7 @@ import { FC, useCallback, useState } from 'react'
 import { debounce } from 'lodash'
 import TrackList from './TrackList'
 import SectionHeading from './SectionHeading'
+import ArtistCard from './ArtistCard'
 
 interface SearchBarProps {}
 
@@ -79,6 +80,16 @@ interface Homepage {
   title: string
 }
 
+interface ArtistSearch {
+  artist: string
+  browseID: string
+  category: 'Artists'
+  radioID: string
+  resultType: 'artist'
+  shuffleID: string
+  thumbnails: Thumbnail[]
+}
+
 function getRandomPlaceholderText(): string {
   const placeholderTexts = [
     'Search for your favorite songs...',
@@ -102,10 +113,10 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
   const [input, setInput] = useState<string>()
 
   const {
-    data: queryResults,
-    refetch,
-    isFetched,
-    isFetching,
+    data: songSearchResults,
+    refetch: refetchSong,
+    // isFetched,
+    isFetching: isFetchingSong,
   } = useQuery({
     queryFn: async () => {
       if (!input) return []
@@ -114,12 +125,29 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
       )
       return data
     },
-    queryKey: ['search-query'],
+    queryKey: ['song-search-query'],
+    enabled: false,
+  })
+  const {
+    data: artistSearchResults,
+    refetch: refetchArtist,
+    // isFetched,
+    isFetching: isFetchingArtist,
+  } = useQuery({
+    queryFn: async () => {
+      if (!input) return []
+      const { data }: { data: ArtistSearch[] } = await axios.get(
+        `https://sickify-web-api.vercel.app/search/artists?query=${input}`
+      )
+      return data
+    },
+    queryKey: ['artist-search-query'],
     enabled: false,
   })
 
   const request = debounce(async () => {
-    refetch()
+    refetchSong()
+    refetchArtist()
   }, 350)
 
   const debounceRequest = useCallback(() => {
@@ -139,6 +167,16 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
     ))
   }
 
+  const ArtistList = ({ array }: { array: ArtistSearch[] }) => {
+    return array.map((elem) => (
+      <ArtistCard
+        key={elem.artist}
+        name={elem.artist}
+        image={elem.thumbnails[elem.thumbnails.length - 1].url}
+      />
+    ))
+  }
+
   return (
     <>
       <div className='flex text-white h-auto w-full p-2 bg-gradient-to-b from-white/10 to-dark'>
@@ -153,18 +191,24 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         />
       </div>
 
-      {input && queryResults && (
+      {input && (
         <>
           <SectionHeading name='Top Results' />
 
-          {/* <div className='flex flex-row w-full overflow-x-auto text-white'> */}
-          <div className='flex flex-col w-full overflow-y-auto text-white pt-2'>
-            {isFetching ? (
-              <p>Searching...</p>
-            ) : (
-              <MusicList array={queryResults} />
-            )}
-          </div>
+          {isFetchingSong || isFetchingArtist ? (
+            <p className='text-white'>Searching...</p>
+          ) : (
+            <>
+              <div className='flex flex-row w-full overflow-x-auto'>
+                {artistSearchResults && (
+                  <ArtistList array={artistSearchResults} />
+                )}
+              </div>
+              <div className='flex flex-col w-full overflow-y-auto pt-2'>
+                {songSearchResults && <MusicList array={songSearchResults} />}
+              </div>
+            </>
+          )}
         </>
       )}
     </>
