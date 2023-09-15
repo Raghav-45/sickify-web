@@ -30,7 +30,7 @@ const OverlayPlayButton: FC<OverlayPlayButtonProps> = ({
         setImage(image)
         setVideoId(videoId)
       }}
-      className='absolute bg-blue-400/10 h-full w-full top-0 inset-x-0'
+      className='absolute h-full w-full top-0 inset-x-0'
     ></div>
   )
 }
