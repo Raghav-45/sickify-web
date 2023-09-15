@@ -7,6 +7,7 @@ import { debounce } from 'lodash'
 import TrackList from './TrackList'
 import SectionHeading from './SectionHeading'
 import ArtistCard from './ArtistCard'
+import { useGenerationStore } from './GenerationStore'
 
 interface SearchBarProps {}
 
@@ -111,6 +112,7 @@ function getRandomPlaceholderText(): string {
 
 const SearchBar: FC<SearchBarProps> = ({}) => {
   const [input, setInput] = useState<string>()
+  const { setName, setArtist, setImage, setIsLoading } = useGenerationStore()
 
   const {
     data: songSearchResults,
@@ -163,6 +165,11 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         name={elem.title}
         artist={elem.artists}
         image={elem.thumbnails[elem.thumbnails.length - 1].url}
+        onClick={() => {
+          setName(elem.title)
+          setArtist(elem.artists)
+          setImage(elem.thumbnails[elem.thumbnails.length - 1].url)
+        }}
       />
     ))
   }
