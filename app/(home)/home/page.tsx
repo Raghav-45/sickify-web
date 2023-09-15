@@ -132,8 +132,9 @@ const page: FC<pageProps> = async ({}) => {
             <MusicCard
               key={elem.title}
               name={elem.title}
-              artist={elem.title}
+              artist={elem.artists}
               image={elem.thumbnails[elem.thumbnails.length - 1].url}
+              videoId={elem.videoId}
             />
           ))}
       </div>
@@ -146,8 +147,9 @@ const page: FC<pageProps> = async ({}) => {
                 <MusicCard
                   key={elem.title}
                   name={elem.title}
-                  artist={elem.title}
+                  artist={elem.artists}
                   image={elem.thumbnails[elem.thumbnails.length - 1].url}
+                  videoId={elem.videoId}
                 />
               ))}
             </div>
