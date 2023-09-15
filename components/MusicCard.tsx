@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { FC } from 'react'
-import { Icons } from './Icons'
 import MusicPlayButton from './MusicPlayButton'
 
 interface MusicCardProps {
