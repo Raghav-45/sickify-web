@@ -166,12 +166,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         name={elem.title}
         artist={elem.artists}
         image={elem.thumbnails[elem.thumbnails.length - 1].url}
-        onClick={() => {
-          setName(elem.title)
-          setArtist(elem.artists)
-          setImage(elem.thumbnails[elem.thumbnails.length - 1].url)
-          setVideoId(elem.videoId)
-        }}
+        videoId={elem.videoId}
       />
     ))
   }
