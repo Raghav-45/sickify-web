@@ -112,7 +112,8 @@ function getRandomPlaceholderText(): string {
 
 const SearchBar: FC<SearchBarProps> = ({}) => {
   const [input, setInput] = useState<string>()
-  const { setName, setArtist, setImage, setIsLoading } = useGenerationStore()
+  const { setName, setArtist, setImage, setIsLoading, setVideoId } =
+    useGenerationStore()
 
   const {
     data: songSearchResults,
@@ -169,6 +170,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
           setName(elem.title)
           setArtist(elem.artists)
           setImage(elem.thumbnails[elem.thumbnails.length - 1].url)
+          setVideoId(elem.videoId)
         }}
       />
     ))

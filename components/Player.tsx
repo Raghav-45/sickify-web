@@ -24,7 +24,17 @@ function ArrayToStr(a: string | Artist[]): string {
 }
 
 const Player: FC<playerProps> = ({}) => {
-  const { name, artist, image, isPlaying, isLoading } = useGenerationStore()
+  const {
+    name,
+    artist,
+    image,
+    isPlaying,
+    setIsPlaying,
+    isLoading,
+    trackLength,
+    currentPlayed,
+    currentloaded,
+  } = useGenerationStore()
   return (
     <div className='px-2 pt-2'>
       <div className='relative flex flex-row h-14 w-full p-2 bg-white/10 align-middle items-center overflow-hidden rounded-xl backdrop-blur-lg transition-all'>
@@ -47,21 +57,29 @@ const Player: FC<playerProps> = ({}) => {
         </div>
         <div className='flex flex-none flex-col order-last h-full justify-center items-center aspect-square'>
           {isPlaying ? (
-            <Icons.Pause className='text-white h-5 w-5' />
+            <Icons.Pause
+              className='text-white h-5 w-5'
+              onClick={() => {
+                setIsPlaying(false)
+              }}
+            />
           ) : (
-            <Icons.Play className='text-white h-5 w-5' />
+            <Icons.Play
+              className='text-white h-5 w-5'
+              onClick={() => {
+                setIsPlaying(true)
+              }}
+            />
           )}
         </div>
 
-        {/* <div className='absolute h-[3px] bottom-0 left-0 mx-1 z-10 rounded-full bg-white/20 w-[0%] transition-all delay-0 duration-300 ease-in-out' style={{ width: `${((BufferDuration/MusicDuration)*100)}%` }}></div>
-        <div className='absolute h-[3px] bottom-0 left-0 mx-1 z-20 rounded-full bg-green-500 w-[0%] transition-all delay-0 duration-300 ease-in-out' style={{ width: `${SeekPos}%` }}></div> */}
         <div
           className='absolute h-[3px] bottom-0 left-0 mx-1 z-10 rounded-full bg-white/20 w-[0%] transition-all delay-0 duration-300 ease-in-out'
-          style={{ width: `${(65 / 100) * 100}%` }}
+          style={{ width: `${(currentloaded / trackLength) * 100}%` }}
         ></div>
         <div
           className='absolute h-[3px] bottom-0 left-0 mx-1 z-20 rounded-full bg-green-500 w-[0%] transition-all delay-0 duration-300 ease-in-out'
-          style={{ width: `${50}%` }}
+          style={{ width: `${(currentPlayed / trackLength) * 100}%` }}
         ></div>
       </div>
     </div>

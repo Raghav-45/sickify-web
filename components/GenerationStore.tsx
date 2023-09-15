@@ -11,6 +11,14 @@ interface generationState {
   setArtist: (artist: Artist[]) => void
   image: string | null
   setImage: (image: string) => void
+  videoId: string | null
+  setVideoId: (videoId: string) => void
+  trackLength: number
+  setTrackLength: (trackLength: number) => void
+  currentPlayed: number
+  setCurrentPlayed: (currentPlayed: number) => void
+  currentloaded: number
+  setCurrentloaded: (currentloaded: number) => void
 }
 
 interface Artist {
@@ -29,4 +37,12 @@ export const useGenerationStore = create<generationState>()((set) => ({
   setArtist: (artist: Artist[]) => set({ artist }),
   image: null,
   setImage: (image: string) => set({ image }),
+  videoId: null,
+  setVideoId: (videoId: string) => set({ videoId }),
+  trackLength: 0,
+  setTrackLength: (trackLength: number) => set({ trackLength }),
+  currentPlayed: 0,
+  setCurrentPlayed: (currentPlayed: number) => set({ currentPlayed }),
+  currentloaded: 0,
+  setCurrentloaded: (currentloaded: number) => set({ currentloaded }),
 }))
