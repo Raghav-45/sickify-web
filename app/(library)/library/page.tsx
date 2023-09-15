@@ -94,6 +94,7 @@ const page: FC<pageProps> = async ({}) => {
             name={elem.title}
             artist={elem.artists}
             image={elem.thumbnails[elem.thumbnails.length - 1].url}
+            videoId={elem.videoId}
           />
         ))}
     </div>
