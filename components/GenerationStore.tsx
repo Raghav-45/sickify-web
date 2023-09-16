@@ -1,4 +1,7 @@
 import { create } from 'zustand'
+import { YTMUSIC as ytmusic } from 'ytmusic'
+
+export const ytmusicapi = new ytmusic()
 
 interface generationState {
   isLoading: boolean
