@@ -135,7 +135,7 @@ async function getData(q) {
 const page: FC<pageProps> = async ({ params }) => {
   const playlistData: PlaylistType = await getData(params.playlistId)
 
-  const MusicList = ({ array }: { array: typeof playlistData.tracks }) => {
+  const MusicList = ({ array }: { array: Track[] }) => {
     return array.map(
       (elem) =>
         elem.videoId && (
