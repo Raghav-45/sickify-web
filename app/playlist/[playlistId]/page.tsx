@@ -152,7 +152,7 @@ const page: FC<pageProps> = async ({ params }) => {
 
   return (
     <div>
-      {playlistData && <p className='text-white'>{playlistData.title}</p>}
+      {playlistData && <h1 className='text-white text-2xl font-semibold py-2 text-center'>{playlistData.title}</h1>}
       {playlistData && <MusicList array={playlistData.tracks} />}
     </div>
   )
