@@ -1,37 +1,159 @@
 import { ytmusicapi } from '@/components/GenerationStore'
 import TrackList from '@/components/TrackList'
+import axios from 'axios'
 import { FC } from 'react'
 
 interface pageProps {
   params: { playlistId: string }
 }
 
-const page: FC<pageProps> = async ({ params }) => {
-  const playlist = await ytmusicapi.getPlaylist(params.playlistId)
+interface Album {
+  id: string
+  name: string
+}
 
-  const MusicList = ({ array }: { array: typeof playlist.content }) => {
-    return array.map((elem) => (
-      <TrackList
-        // @ts-ignore
-        key={elem.title.text}
-        // @ts-ignore
-        name={elem.title.text}
-        artist={elem.author.map((obj, i) => ({
-          name: obj.text,
-          id: String(i + 1),
-        }))}
-        image={elem.thumbnail[elem.thumbnail.length - 1].url}
-        videoId={elem.id}
-      />
-    ))
+interface Artist {
+  id: string
+  name: string
+}
+
+interface Thumbnail {
+  height: number
+  url: string
+  width: number
+}
+
+interface Video {
+  id: string
+  videoType: string
+}
+
+interface FeedbackTokens {
+  add: null | any
+  remove: null | any
+}
+
+interface Song {
+  album: Album
+  artists: Artist[]
+  category: string
+  duration: string
+  duration_seconds: number
+  feedbackTokens: FeedbackTokens
+  isExplicit: boolean
+  resultType: string
+  thumbnails: Thumbnail[]
+  title: string
+  videoId: string
+  videoType: string
+  year: null | number
+}
+
+interface SongData {
+  album: Album
+  artists: Artist[]
+  isExplicit: boolean
+  thumbnails: Thumbnail[]
+  title: string
+  videoId: string
+}
+
+interface Content {
+  album?: Album
+  artists?: Album[]
+  isExplicit?: boolean
+  thumbnails: Thumbnail[]
+  title: string
+  videoID?: string
+  description?: string
+  playlistID?: string
+  views?: string
+  browseID?: string
+  year?: string
+}
+
+interface Homepage {
+  contents: SongData[]
+  title: string
+}
+
+interface ArtistSearch {
+  artist: string
+  browseID: string
+  category: 'Artists'
+  radioID: string
+  resultType: 'artist'
+  shuffleID: string
+  thumbnails: Thumbnail[]
+}
+
+enum VideoType {
+  MusicVideoTypeAtv = 'MUSIC_VIDEO_TYPE_ATV',
+  MusicVideoTypeOmv = 'MUSIC_VIDEO_TYPE_OMV',
+}
+
+interface Track {
+  album?: Album
+  artists: Artist[]
+  duration?: string
+  duration_seconds?: number
+  isAvailable: boolean
+  isExplicit: boolean
+  likeStatus?: string
+  thumbnails: Thumbnail[]
+  title: string
+  videoId?: string
+  videoType?: VideoType | string
+}
+
+interface PlaylistType {
+  author: Artist
+  description: any
+  duration: string
+  duration_seconds: number
+  id: string
+  privacy: string
+  thumbnails: Thumbnail[]
+  title: string
+  trackCount: number
+  tracks: Track[]
+  year: string
+}
+
+async function getData(q) {
+  const res = await fetch(
+    `https://sickify-web-api.vercel.app/getartist/songs?query=${q}`
+  )
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
   }
+
+  return res.json()
+}
+
+const page: FC<pageProps> = async ({ params }) => {
+  const playlistData: PlaylistType = await getData(params.playlistId)
+
+  const MusicList = ({ array }: { array: typeof playlistData.tracks }) => {
+    return array.map(
+      (elem) =>
+        elem.videoId && (
+          <TrackList
+            key={elem.title}
+            name={elem.title}
+            artist={elem.artists}
+            image={elem.thumbnails[elem.thumbnails.length - 1].url}
+            videoId={elem.videoId}
+          />
+        )
+    )
+  }
+
   return (
     <div>
-      {playlist && (
-        // @ts-ignore
-        <p className='text-white'>{playlist.title.text}</p>
-      )}
-      {playlist && <MusicList array={playlist.content} />}
+      {playlistData && <p className='text-white'>{playlistData.title}</p>}
+      {playlistData && <MusicList array={playlistData.tracks} />}
     </div>
   )
 }
