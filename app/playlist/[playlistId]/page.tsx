@@ -1,6 +1,7 @@
 import { ytmusicapi } from '@/components/GenerationStore'
 import TrackList from '@/components/TrackList'
 import axios from 'axios'
+import Image from 'next/image'
 import { FC } from 'react'
 
 interface pageProps {
@@ -152,7 +153,22 @@ const page: FC<pageProps> = async ({ params }) => {
 
   return (
     <div>
-      {playlistData && <h1 className='text-white text-2xl font-semibold py-2 text-center'>{playlistData.title}</h1>}
+      {playlistData && (
+        <div className='flex flex-col h-auto w-full px-10 pt-6 mx-auto'>
+          <Image
+            height={136}
+            width={136}
+            className='h-full w-full rounded-xl'
+            src={
+              playlistData.thumbnails[playlistData.thumbnails.length - 1].url
+            }
+            alt={'Playlist Thumbnail'}
+          />
+          <h1 className='text-white text-xl font-semibold text-center px-1 py-2 truncate'>
+            {playlistData.title}
+          </h1>
+        </div>
+      )}
       {playlistData && <MusicList array={playlistData.tracks} />}
     </div>
   )
