@@ -121,7 +121,7 @@ interface PlaylistType {
   year: string
 }
 
-async function getData(q) {
+async function getData(q: string) {
   const res = await fetch(
     `https://sickify-web-api.vercel.app/getartist/songs?query=${q}`
   )
