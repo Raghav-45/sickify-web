@@ -38,21 +38,21 @@ async function createPlaylist(playlistName: string) {
 
 async function addToPlaylist(
   playlistId: string,
-  whatToAdd?: playlistContentType
+  whatToAdd: playlistContentType
 ) {
   const playlistDocRef = doc(db, 'playlists', playlistId)
   await updateDoc(playlistDocRef, {
-    contents: arrayUnion({ name: 'Pablo', artist: 'king', image: 'tasd' }),
+    contents: arrayUnion(whatToAdd),
   })
 }
 
 async function removeFromPlaylist(
   playlistId: string,
-  whatToRemove?: playlistContentType
+  whatToRemove: playlistContentType
 ) {
   const playlistDocRef = doc(db, 'playlists', playlistId)
   await updateDoc(playlistDocRef, {
-    contents: arrayRemove({ name: 'Pablo', artist: 'king', image: 'tasd' }),
+    contents: arrayRemove(whatToRemove),
   })
 }
 
