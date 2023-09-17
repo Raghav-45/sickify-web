@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import { Search, Plus } from 'lucide-react'
+import { Search } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import CreatePlaylistDialog from '@/components/CreatePlaylistDialog'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -26,7 +27,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <div className='flex gap-5 mr-2'>
               <Search className='h-6 w-6' />
-              <Plus className='h-6 w-6' />
+              <CreatePlaylistDialog />
             </div>
           </div>
         </div>

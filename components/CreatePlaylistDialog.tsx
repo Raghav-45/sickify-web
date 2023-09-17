@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { createPlaylist } from '@/lib/dbUtils'
 import toast from 'react-hot-toast'
-import { Loader2Icon } from 'lucide-react'
+import { Loader2Icon, PlusIcon } from 'lucide-react'
 
 interface CreatePlaylistDialogProps {}
 
@@ -42,15 +42,15 @@ const CreatePlaylistDialog: FC<CreatePlaylistDialogProps> = ({}) => {
   return (
     <Dialog open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
       <DialogTrigger asChild>
-        <Button variant='outline'>Create New Playlist</Button>
+        <PlusIcon className='h-6 w-6' />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Give your playlist a name.</DialogTitle>
-          {/* <DialogDescription>Give your playlist a name.</DialogDescription> */}
+          <DialogTitle>Create new playlist</DialogTitle>
+          <DialogDescription>Give your playlist a name.</DialogDescription>
         </DialogHeader>
 
-        <div className='py-2'>
+        <div className='pb-2'>
           <Input
             id='playlistName'
             value={input}
