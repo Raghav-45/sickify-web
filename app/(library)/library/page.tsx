@@ -1,5 +1,8 @@
-import TrackList from '@/components/TrackList'
+import { PlaylistType } from '@/lib/dbUtils'
 import { FC } from 'react'
+import { collection, getDocs, query, where } from 'firebase/firestore'
+import { db } from '@/lib/firebaseClient'
+import Playlist from '@/components/Playlist'
 
 interface pageProps {}
 
@@ -83,18 +86,35 @@ const getData = async () => {
   return res.json()
 }
 
+async function getUserPlaylist() {
+  const data: (PlaylistType & { id: string })[] = []
+  const q = query(
+    collection(db, 'playlists'),
+    where('owner', '==', '81f07a37-d25d-474c-b029-e71e2fefc85b')
+  )
+  const querySnapshot = await getDocs(q)
+  querySnapshot.forEach((doc) => {
+    data.push({ id: doc.id, ...doc.data() } as PlaylistType & { id: string })
+    console.log(doc.id, ' => ', doc.data())
+  })
+  return data
+}
+
 const page: FC<pageProps> = async ({}) => {
   const data: SongData[] = await getData()
+  const userPlaylists = await getUserPlaylist()
+
   return (
     <div>
-      {data &&
-        data.map((elem) => (
-          <TrackList
-            key={elem.title}
-            name={elem.title}
-            artist={elem.artists}
-            image={elem.thumbnails[elem.thumbnails.length - 1].url}
-            videoId={elem.videoId}
+      {userPlaylists &&
+        userPlaylists.map((elem) => (
+          <Playlist
+            key={elem.name}
+            name={elem.name}
+            image={
+              'https://lh3.googleusercontent.com/BF0qukRO1UhzY0I_0W4SyFUbwi24WaLalgbCSvH1vd1O-SKXZ3xSsNxw0OouObUEuRZ--xXVarYY3k4P=w120-h120-l90-rj'
+            }
+            id={elem.id}
           />
         ))}
     </div>
