@@ -30,11 +30,7 @@ const page: FC<pageProps> = async ({}) => {
           <Playlist
             key={elem.name}
             name={elem.name}
-            image={
-              elem.contents.length == 0
-                ? '/icon-192x192.png'
-                : elem.contents[0].image
-            }
+            image='/icon-192x192.png'
             id={elem.id}
           />
         ))}
