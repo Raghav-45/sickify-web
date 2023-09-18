@@ -7,32 +7,9 @@ interface MusicCardProps {
   artist: string
   image: string
   videoId?: string
-  onClick?: any
 }
 
-interface ArtistType {
-  id: string
-  name: string
-}
-
-function ArrayToStr(a: string | ArtistType[]): string {
-  if (typeof a === 'string') {
-    return a
-  }
-  if (Array.isArray(a)) {
-    const b = a.map((e) => e.name)
-    return b.join(', ')
-  }
-  return ''
-}
-
-const MusicCard: FC<MusicCardProps> = ({
-  name,
-  artist,
-  image,
-  videoId,
-  onClick,
-}) => {
+const MusicCard: FC<MusicCardProps> = ({ name, artist, image, videoId }) => {
   return (
     <div className='relative flex-none group p-2 w-48'>
       <div className='bg-light w-full h-auto p-4 rounded-xl shadow-md'>
