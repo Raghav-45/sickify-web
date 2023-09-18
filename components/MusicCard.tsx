@@ -4,7 +4,7 @@ import MusicPlayButton from './MusicPlayButton'
 
 interface MusicCardProps {
   name: string
-  artist: ArtistType[]
+  artist: string
   image: string
   videoId?: string
   onClick?: any
@@ -59,7 +59,7 @@ const MusicCard: FC<MusicCardProps> = ({
           {name}
         </h1>
         <h2 className='text-xs text-lightest tracking-wide whitespace-nowrap overflow-x-hidden text-ellipsis pb-0'>
-          {ArrayToStr(artist)}
+          {artist}
         </h2>
       </div>
     </div>

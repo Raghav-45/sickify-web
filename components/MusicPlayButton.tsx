@@ -6,14 +6,9 @@ import { Icons } from './Icons'
 
 interface MusicPlayButtonProps {
   name: string
-  artist: ArtistType[]
+  artist: string
   image: string
   videoId: string
-}
-
-interface ArtistType {
-  id: string
-  name: string
 }
 
 const MusicPlayButton: FC<MusicPlayButtonProps> = ({

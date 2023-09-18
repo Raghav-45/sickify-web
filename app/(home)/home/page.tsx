@@ -93,6 +93,17 @@ async function getHomePage() {
   return res.json()
 }
 
+function ArrayToStr(a: string | Artist[]): string {
+  if (typeof a === 'string') {
+    return a
+  }
+  if (Array.isArray(a)) {
+    const b = a.map((e) => e.name)
+    return b.join(', ')
+  }
+  return ''
+}
+
 const page: FC<pageProps> = async ({}) => {
   const data: Song[] = await getData()
   const homepageData: Homepage[] = await getHomePage()
@@ -132,7 +143,7 @@ const page: FC<pageProps> = async ({}) => {
             <MusicCard
               key={elem.title}
               name={elem.title}
-              artist={elem.artists}
+              artist={ArrayToStr(elem.artists)}
               image={elem.thumbnails[elem.thumbnails.length - 1].url}
               videoId={elem.videoId}
             />
@@ -147,7 +158,7 @@ const page: FC<pageProps> = async ({}) => {
                 <MusicCard
                   key={elem.title}
                   name={elem.title}
-                  artist={elem.artists}
+                  artist={ArrayToStr(elem.artists)}
                   image={elem.thumbnails[elem.thumbnails.length - 1].url}
                   videoId={elem.videoId}
                 />
