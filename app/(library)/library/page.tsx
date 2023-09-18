@@ -8,7 +8,7 @@ interface pageProps {}
 
 type PlaylistTypeWithId = PlaylistType & { id: string }
 
-async function getUserPlaylist() {
+async function getUserPlaylists() {
   const data: PlaylistTypeWithId[] = []
   const q = query(
     collection(db, 'playlists'),
@@ -22,7 +22,7 @@ async function getUserPlaylist() {
 }
 
 const page: FC<pageProps> = async ({}) => {
-  const userPlaylists = await getUserPlaylist()
+  const userPlaylists = await getUserPlaylists()
   return (
     <div>
       {userPlaylists &&
@@ -30,7 +30,11 @@ const page: FC<pageProps> = async ({}) => {
           <Playlist
             key={elem.name}
             name={elem.name}
-            image={'/icon-192x192.png'}
+            image={
+              elem.contents.length == 0
+                ? '/icon-192x192.png'
+                : elem.contents[0].image
+            }
             id={elem.id}
           />
         ))}
