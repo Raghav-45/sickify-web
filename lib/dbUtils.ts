@@ -20,6 +20,7 @@ interface playlistContentType {
   name: string
   artist: string
   image: string
+  videoId: string
 }
 
 async function createPlaylist(playlistName: string) {
