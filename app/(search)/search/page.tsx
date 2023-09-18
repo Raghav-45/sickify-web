@@ -7,7 +7,6 @@ import { debounce } from 'lodash'
 import TrackList from '@/components/TrackList'
 import SectionHeading from '@/components/SectionHeading'
 import ArtistCard from '@/components/ArtistCard'
-import { useGenerationStore } from '@/components/GenerationStore'
 
 interface pageProps {}
 
@@ -25,11 +24,6 @@ interface Thumbnail {
   height: number
   url: string
   width: number
-}
-
-interface Video {
-  id: string
-  videoType: string
 }
 
 interface FeedbackTokens {
@@ -51,34 +45,6 @@ interface Song {
   videoId: string
   videoType: string
   year: null | number
-}
-
-interface SongData {
-  album: Album
-  artists: Artist[]
-  isExplicit: boolean
-  thumbnails: Thumbnail[]
-  title: string
-  videoId: string
-}
-
-interface Content {
-  album?: Album
-  artists?: Album[]
-  isExplicit?: boolean
-  thumbnails: Thumbnail[]
-  title: string
-  videoID?: string
-  description?: string
-  playlistID?: string
-  views?: string
-  browseID?: string
-  year?: string
-}
-
-interface Homepage {
-  contents: SongData[]
-  title: string
 }
 
 interface ArtistSearch {
@@ -121,10 +87,30 @@ function ArrayToStr(a: string | Artist[]): string {
   return ''
 }
 
+const MusicList = ({ array }: { array: Song[] }) => {
+  return array.map((elem) => (
+    <TrackList
+      key={elem.title}
+      name={elem.title}
+      artist={ArrayToStr(elem.artists)}
+      image={elem.thumbnails[elem.thumbnails.length - 1].url}
+      videoId={elem.videoId}
+    />
+  ))
+}
+
+const ArtistList = ({ array }: { array: ArtistSearch[] }) => {
+  return array.map((elem) => (
+    <ArtistCard
+      key={elem.artist}
+      name={elem.artist}
+      image={elem.thumbnails[elem.thumbnails.length - 1].url}
+    />
+  ))
+}
+
 const Page: FC<pageProps> = ({}) => {
   const [input, setInput] = useState<string>()
-  const { setName, setArtist, setImage, setIsLoading, setVideoId } =
-    useGenerationStore()
 
   const {
     data: songSearchResults,
@@ -142,6 +128,7 @@ const Page: FC<pageProps> = ({}) => {
     queryKey: ['song-search-query'],
     enabled: false,
   })
+
   const {
     data: artistSearchResults,
     refetch: refetchArtist,
@@ -169,28 +156,6 @@ const Page: FC<pageProps> = ({}) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  const MusicList = ({ array }: { array: Song[] }) => {
-    return array.map((elem) => (
-      <TrackList
-        key={elem.title}
-        name={elem.title}
-        artist={ArrayToStr(elem.artists)}
-        image={elem.thumbnails[elem.thumbnails.length - 1].url}
-        videoId={elem.videoId}
-      />
-    ))
-  }
-
-  const ArtistList = ({ array }: { array: ArtistSearch[] }) => {
-    return array.map((elem) => (
-      <ArtistCard
-        key={elem.artist}
-        name={elem.artist}
-        image={elem.thumbnails[elem.thumbnails.length - 1].url}
-      />
-    ))
-  }
 
   return (
     <>
