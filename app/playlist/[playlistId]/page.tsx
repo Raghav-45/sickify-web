@@ -1,11 +1,8 @@
 import FourImageGrid from '@/components/FourImageGrid'
-import { ytmusicapi } from '@/components/GenerationStore'
 import TrackList from '@/components/TrackList'
-import { PlaylistType, playlistContentType } from '@/lib/dbUtils'
+import { PlaylistType } from '@/lib/dbUtils'
 import { db } from '@/lib/firebaseClient'
-import axios from 'axios'
 import { doc, getDoc } from 'firebase/firestore'
-import Image from 'next/image'
 import { FC } from 'react'
 
 interface pageProps {
