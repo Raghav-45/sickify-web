@@ -8,22 +8,6 @@ import { cn } from '@/lib/utils'
 
 interface playerProps {}
 
-interface Artist {
-  id: string
-  name: string
-}
-
-function ArrayToStr(a: string | Artist[]): string {
-  if (typeof a === 'string') {
-    return a
-  }
-  if (Array.isArray(a)) {
-    const b = a.map((e) => e.name)
-    return b.join(', ')
-  }
-  return ''
-}
-
 const Player: FC<playerProps> = ({}) => {
   const {
     name,
@@ -52,7 +36,7 @@ const Player: FC<playerProps> = ({}) => {
         <div className='flex flex-1 flex-col ml-2 text-white text-left align-middle'>
           <h1 className='text-sm font-semibold'>{name ?? 'Sickify'}</h1>
           <h2 className='text-xs'>
-            {artist ? ArrayToStr(artist) : 'By - @raghav_aditya_45'}
+            {artist ? artist : 'By - @raghav_aditya_45'}
           </h2>
         </div>
         <div className='flex flex-none flex-col order-last h-full justify-center items-center aspect-square'>

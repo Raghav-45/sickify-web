@@ -5,14 +5,9 @@ import { useGenerationStore } from './GenerationStore'
 
 interface OverlayPlayButtonProps {
   name: string
-  artist: ArtistType[]
+  artist: string
   image: string
   videoId: string
-}
-
-interface ArtistType {
-  id: string
-  name: string
 }
 
 const OverlayPlayButton: FC<OverlayPlayButtonProps> = ({
