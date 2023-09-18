@@ -175,19 +175,21 @@ const Page: FC<pageProps> = ({}) => {
         <>
           <SectionHeading name='Top Results' />
 
-          {isFetchingSong || isFetchingArtist ? (
+          {(isFetchingArtist || isFetchingSong) && (
             <p className='text-white'>Searching...</p>
-          ) : (
-            <>
-              <div className='flex flex-row w-full overflow-x-auto'>
-                {artistSearchResults && (
-                  <ArtistList array={artistSearchResults} />
-                )}
-              </div>
-              <div className='flex flex-col w-full overflow-y-auto pt-2'>
-                {songSearchResults && <MusicList array={songSearchResults} />}
-              </div>
-            </>
+          )}
+
+          {!isFetchingArtist && (
+            <div className='flex flex-row w-full overflow-x-auto'>
+              {artistSearchResults && (
+                <ArtistList array={artistSearchResults} />
+              )}
+            </div>
+          )}
+          {!isFetchingSong && (
+            <div className='flex flex-col w-full overflow-y-auto pt-2'>
+              {songSearchResults && <MusicList array={songSearchResults} />}
+            </div>
           )}
         </>
       )}
