@@ -2,7 +2,6 @@
 
 import { FC } from 'react'
 import { useGenerationStore } from './GenerationStore'
-import AddToPlaylistButton from './AddToPlaylistButton'
 import { MoreVerticalIcon } from 'lucide-react'
 import { addToPlaylist } from '@/lib/dbUtils'
 

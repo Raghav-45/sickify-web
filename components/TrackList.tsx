@@ -3,7 +3,6 @@ import { FC } from 'react'
 import OverlayPlayButton from './OverlayPlayButton'
 import { MoreVerticalIcon } from 'lucide-react'
 import { addToPlaylist } from '@/lib/dbUtils'
-import AddToPlaylistButton from './AddToPlaylistButton'
 
 interface TrackListProps {
   name: string
@@ -34,14 +33,6 @@ const TrackList: FC<TrackListProps> = ({ name, artist, image, videoId }) => {
         <div className='flex flex-1 flex-col ml-2 text-left align-middle transition-all duration-100 delay-200 overflow-hidden'>
           <h1 className='text-sm font-semibold text-white truncate'>{name}</h1>
           <h2 className='text-xs text-white truncate'>{artist}</h2>
-        </div>
-        <div className='flex flex-none mr-2 text-white align-middle justify-center'>
-          {/* <AddToPlaylistButton
-            name={name}
-            artists={ArrayToStr(artist)}
-            image={image}
-            videoId={videoId}
-          /> */}
         </div>
       </div>
     </div>
