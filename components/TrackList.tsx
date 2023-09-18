@@ -40,6 +40,7 @@ const TrackList: FC<TrackListProps> = ({ name, artist, image, videoId }) => {
             name={name}
             artists={ArrayToStr(artist)}
             image={image}
+            videoId={videoId}
           /> */}
         </div>
       </div>
