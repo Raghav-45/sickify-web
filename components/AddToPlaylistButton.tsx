@@ -1,19 +1,14 @@
 'use client'
 
-import { addToPlaylist } from '@/lib/dbUtils'
+import { addToPlaylist, playlistContentType } from '@/lib/dbUtils'
 import { MoreVerticalIcon } from 'lucide-react'
 import { FC } from 'react'
 
-interface AddToPlaylistButtonProps {
-  name: string
-  artists: string
-  image: string
-}
-
-const AddToPlaylistButton: FC<AddToPlaylistButtonProps> = ({
+const AddToPlaylistButton: FC<playlistContentType> = ({
   name,
-  artists,
+  artist,
   image,
+  videoId,
 }) => {
   return (
     <MoreVerticalIcon
@@ -21,8 +16,9 @@ const AddToPlaylistButton: FC<AddToPlaylistButtonProps> = ({
       onClick={() => {
         addToPlaylist('Zc1NENwJPxLFd9CoAJTP', {
           name: name,
-          artist: artists,
+          artist: artist,
           image: image,
+          videoId: videoId,
         })
       }}
     />
