@@ -2,8 +2,9 @@
 
 import { FC } from 'react'
 import { useGenerationStore } from './GenerationStore'
-import { MoreVerticalIcon } from 'lucide-react'
+import { Mail, MessageSquare, MoreVerticalIcon, PlusCircle, PlusIcon, UserPlus } from 'lucide-react'
 import { addToPlaylist } from '@/lib/dbUtils'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from './ui/dropdown-menu'
 
 interface OverlayPlayButtonProps {
   name: string
@@ -31,7 +32,7 @@ const OverlayPlayButton: FC<OverlayPlayButtonProps> = ({
         }}
       ></div>
       <div className='flex flex-none h-full w-auto aspect-square text-white items-center justify-center mr-1'>
-        <MoreVerticalIcon
+        {/* <MoreVerticalIcon
           className='h-5 w-5'
           onClick={() => {
             addToPlaylist('Zc1NENwJPxLFd9CoAJTP', {
@@ -41,7 +42,38 @@ const OverlayPlayButton: FC<OverlayPlayButtonProps> = ({
               videoId: videoId,
             })
           }}
-        />
+        /> */}
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <MoreVerticalIcon className='h-5 w-5 rounded-full' />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>
+                <PlusIcon className="mr-2 h-4 w-4" />
+                <span>Add to Playlist</span>
+              </DropdownMenuSubTrigger>
+              <DropdownMenuPortal>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      addToPlaylist('Zc1NENwJPxLFd9CoAJTP', {
+                        name: name,
+                        artist: artist,
+                        image: image,
+                        videoId: videoId,
+                      })
+                    }}
+                  >
+                    Raghav's playlist
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>Just Relaxing 🏖️🏞️</DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuPortal>
+            </DropdownMenuSub>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   )
