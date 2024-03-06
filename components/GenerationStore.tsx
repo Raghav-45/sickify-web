@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { PlaylistTypeWithId } from '@/lib/dbUtils'
 
 interface generationState {
   isLoading: boolean
@@ -19,11 +20,19 @@ interface generationState {
   setCurrentPlayed: (currentPlayed: number) => void
   currentloaded: number
   setCurrentloaded: (currentloaded: number) => void
+  userPlaylists: PlaylistTypeWithId[] | null
+  setUserPlaylists: (userPlaylists: PlaylistTypeWithId[] | null) => void
 }
 
 interface Artist {
   id: string
   name: string
+}
+
+interface Playlist {
+  name: string
+  id: string
+  image: string
 }
 
 export const useGenerationStore = create<generationState>()((set) => ({
@@ -45,4 +54,6 @@ export const useGenerationStore = create<generationState>()((set) => ({
   setCurrentPlayed: (currentPlayed: number) => set({ currentPlayed }),
   currentloaded: 0,
   setCurrentloaded: (currentloaded: number) => set({ currentloaded }),
+  userPlaylists: null,
+  setUserPlaylists: (userPlaylists: PlaylistTypeWithId[] | null) => set({ userPlaylists }),
 }))

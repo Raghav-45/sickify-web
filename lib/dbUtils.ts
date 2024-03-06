@@ -6,7 +6,10 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDocs,
+  query,
   updateDoc,
+  where,
 } from 'firebase/firestore'
 
 interface PlaylistType {
@@ -16,11 +19,26 @@ interface PlaylistType {
   contents: playlistContentType[]
 }
 
+type PlaylistTypeWithId = PlaylistType & { id: string }
+
 interface playlistContentType {
   name: string
   artist: string
   image: string
   videoId: string
+}
+
+async function getUserPlaylists() {
+  const data: PlaylistTypeWithId[] = []
+  const q = query(
+    collection(db, 'playlists'),
+    where('owner', '==', '81f07a37-d25d-474c-b029-e71e2fefc85b')
+  )
+  const querySnapshot = await getDocs(q)
+  querySnapshot.forEach((doc) => {
+    data.push({ id: doc.id, ...doc.data() } as PlaylistTypeWithId)
+  })
+  return data
 }
 
 async function createPlaylist(playlistName: string) {
@@ -63,7 +81,9 @@ async function deletePlaylist(playlistId: string) {
 
 export {
   type PlaylistType,
+  type PlaylistTypeWithId,
   type playlistContentType,
+  getUserPlaylists,
   createPlaylist,
   addToPlaylist,
   removeFromPlaylist,
