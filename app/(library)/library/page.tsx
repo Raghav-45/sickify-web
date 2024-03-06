@@ -1,23 +1,8 @@
-import { PlaylistType, PlaylistTypeWithId, getUserPlaylists } from '@/lib/dbUtils'
+import { getUserPlaylists } from '@/lib/dbUtils'
 import { FC } from 'react'
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { db } from '@/lib/firebaseClient'
 import Playlist from '@/components/Playlist'
 
 interface pageProps {}
-
-// async function getUserPlaylists() {
-//   const data: PlaylistTypeWithId[] = []
-//   const q = query(
-//     collection(db, 'playlists'),
-//     where('owner', '==', '81f07a37-d25d-474c-b029-e71e2fefc85b')
-//   )
-//   const querySnapshot = await getDocs(q)
-//   querySnapshot.forEach((doc) => {
-//     data.push({ id: doc.id, ...doc.data() } as PlaylistTypeWithId)
-//   })
-//   return data
-// }
 
 const page: FC<pageProps> = async ({}) => {
   const userPlaylists = await getUserPlaylists()
