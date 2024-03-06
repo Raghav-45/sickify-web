@@ -66,7 +66,7 @@ const OverlayPlayButton: FC<OverlayPlayButtonProps> = ({
                       })
                     }}
                   >
-                    Raghav's playlist
+                    Raghav&#39;s playlist
                   </DropdownMenuItem>
                   <DropdownMenuItem>Just Relaxing 🏖️🏞️</DropdownMenuItem>
                 </DropdownMenuSubContent>
