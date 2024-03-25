@@ -110,8 +110,8 @@ const cookieyt = "YSC=rmtvUrAmk_s; VISITOR_INFO1_LIVE=A_qcuGtsSNQ; _gcl_au=1.1.2
 const api = new ytmusicapi(cookieyt)
 
 const page: FC<pageProps> = async ({}) => {
-  const data: Song[] = await getData()
-  const homepageData: Homepage[] = await getHomePage()
+  // const data: Song[] = await getData()
+  // const homepageData: Homepage[] = await getHomePage()
   const songs = await api.search('Hot stuff')
   console.log(songs)
   return (
