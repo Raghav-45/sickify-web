@@ -156,7 +156,7 @@ const page: FC<pageProps> = async ({}) => {
             />
           ))}
       </div> */}
-      {homepageData &&
+      {/* {homepageData &&
         homepageData.map((section) => (
           <>
             <SectionHeading name={section.title} />
@@ -172,7 +172,7 @@ const page: FC<pageProps> = async ({}) => {
               ))}
             </div>
           </>
-        ))}
+        ))} */}
     </>
   )
 }
