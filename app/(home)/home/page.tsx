@@ -109,7 +109,7 @@ const page: FC<pageProps> = async ({}) => {
   const homepageData: Homepage[] = await getHomePage()
   return (
     <>
-      <div className='grid grid-cols-2 gap-2 w-full px-2 pt-2 mb-4'>
+      <div className='gap-2 grid grid-cols-2 mb-4 px-2 pt-2 w-full'>
         <PlaylistPanel
           name='Discover'
           image='https://lh3.googleusercontent.com/PZH8nrSG0_UE9ewl9nxelQn-19-mf6vyU0ddwsPZYJjdE2_05YkkIYfR9FCpzpC-CqTT9fQKtmP0Sw=w544-h544-l90-rj'
@@ -136,8 +136,8 @@ const page: FC<pageProps> = async ({}) => {
         />
       </div>
 
-      <SectionHeading name='Made for You' />
-      <div className='flex w-full hide-scrollbar overflow-x-scroll'>
+      {/* <SectionHeading name='Made for You' />
+      <div className='flex w-full overflow-x-scroll hide-scrollbar'>
         {data &&
           data.map((elem) => (
             <MusicCard
@@ -148,12 +148,12 @@ const page: FC<pageProps> = async ({}) => {
               videoId={elem.videoId}
             />
           ))}
-      </div>
+      </div> */}
       {homepageData &&
         homepageData.map((section) => (
           <>
             <SectionHeading name={section.title} />
-            <div className='flex w-full hide-scrollbar overflow-x-scroll'>
+            <div className='flex w-full overflow-x-scroll hide-scrollbar'>
               {section.contents.map((elem) => (
                 <MusicCard
                   key={elem.title}
