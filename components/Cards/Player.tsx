@@ -1,7 +1,7 @@
 import { FontAwesome6 } from '@expo/vector-icons'
 import { Image } from 'expo-image'
 import { FC, useState } from 'react'
-import { Text, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 
 interface PlayerProps {
   image?: string
@@ -28,23 +28,13 @@ const Player: FC<PlayerProps> = ({ name, image, extra }) => {
           </Text>
         </View>
         <View className="flex flex-none flex-col order-last h-full justify-center items-center aspect-square">
-          {true ? (
-            // <Icons.Pause
-            //   className="text-white h-5 w-5"
-            //   onClick={() => {
-            //     setIsPlaying(false)
-            //   }}
-            // />
-            <FontAwesome6 size={18} name="bookmark" color="white" />
-          ) : (
-            // <Icons.Play
-            //   className="text-white h-5 w-5"
-            //   onClick={() => {
-            //     setIsPlaying(true)
-            //   }}
-            // />
-            <FontAwesome6 size={18} name="house" color="white" />
-          )}
+          <TouchableOpacity onPress={() => setIsPlaying(!isPlaying)}>
+            {isPlaying ? (
+              <FontAwesome6 size={18} name="play" color="white" />
+            ) : (
+              <FontAwesome6 size={18} name="pause" color="white" />
+            )}
+          </TouchableOpacity>
         </View>
 
         {/* <View
