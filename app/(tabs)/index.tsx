@@ -12,6 +12,7 @@ import Music from '@/components/Cards/Music'
 import PlaylistPanel from '@/components/Cards/PlaylistPanel'
 import { LinearGradient } from 'expo-linear-gradient'
 import SectionHeading from '@/components/Cards/SectionHeading'
+import Player from '@/components/Cards/Player'
 
 export default function Tab() {
   const insets = useSafeAreaInsets()
@@ -131,6 +132,9 @@ export default function Tab() {
             </View>
           </View>
         </View>
+
+        <SectionHeading name="Made for Raghav" />
+        <Player name="Spotify Clone" />
 
         <SectionHeading name="Made for Raghav" />
         <ScrollView horizontal>
