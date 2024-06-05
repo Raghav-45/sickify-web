@@ -24,7 +24,7 @@ const TabBar: FC<TabBarProps> = ({ state, descriptors, navigation }) => {
   }
   return (
     <BlurView
-      intensity={20}
+      intensity={10}
       experimentalBlurMethod="dimezisBlurView"
       style={styles.tabbar}
     >
