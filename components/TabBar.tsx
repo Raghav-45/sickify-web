@@ -1,6 +1,7 @@
 import { FontAwesome6 } from '@expo/vector-icons'
 import { FC } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { BlurView } from 'expo-blur'
 
 interface TabBarProps {}
 
@@ -22,7 +23,11 @@ const TabBar: FC<TabBarProps> = ({ state, descriptors, navigation }) => {
     ),
   }
   return (
-    <View style={styles.tabbar}>
+    <BlurView
+      intensity={20}
+      experimentalBlurMethod="dimezisBlurView"
+      style={styles.tabbar}
+    >
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key]
         const label =
@@ -72,7 +77,7 @@ const TabBar: FC<TabBarProps> = ({ state, descriptors, navigation }) => {
           </TouchableOpacity>
         )
       })}
-    </View>
+    </BlurView>
   )
 }
 
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     paddingHorizontal: 20,
     paddingVertical: 15,
     // borderTopLeftRadius: 10,
