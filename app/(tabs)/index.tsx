@@ -133,8 +133,8 @@ export default function Tab() {
           </View>
         </View>
 
-        <SectionHeading name="Made for Raghav" />
-        <Player name="Spotify Clone" />
+        <SectionHeading name="Player Design" />
+        <Player />
 
         <SectionHeading name="Made for Raghav" />
         <ScrollView horizontal>
