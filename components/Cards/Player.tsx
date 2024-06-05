@@ -18,7 +18,7 @@ const Player: FC<PlayerProps> = ({ name, image, extra }) => {
 
   return (
     <View className="px-2 pt-2">
-      <View className="relative flex flex-row h-14 w-full p-2 bg-white/10 align-middle items-center overflow-hidden rounded-xl backdrop-blur-lg transition-all">
+      <View className="relative flex flex-row h-14 w-full p-2 bg-white/10 align-middle items-center overflow-hidden rounded-xl transition-all">
         <Image
           className="flex-none aspect-square h-full w-auto shadow-[0_4px_24px_rgb(0,0,0,50%)] overflow-hidden"
           source={image ?? 'https://sickify-web.vercel.app/icon-192x192.png'}
@@ -29,7 +29,7 @@ const Player: FC<PlayerProps> = ({ name, image, extra }) => {
             {name ?? 'Sickify'}
           </Text>
           <Text className="text-white text-xs">
-            {extra ? extra : 'By - @raghav_aditya_45'}
+            {extra ?? 'By - @raghav_aditya_45'}
           </Text>
         </View>
         <View className="flex flex-none flex-col order-last h-full justify-center items-center aspect-square">
