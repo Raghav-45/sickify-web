@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import PlaylistPanel from '@/components/Cards/PlaylistPanel'
 import { LinearGradient } from 'expo-linear-gradient'
 import SectionHeading from '@/components/Cards/SectionHeading'
 import Player from '@/components/Cards/Player'
+import axios from 'axios'
 
 export default function Tab() {
   const insets = useSafeAreaInsets()
@@ -23,6 +24,22 @@ export default function Tab() {
       hour < 12 ? 'morning' : hour < 18 ? 'afternoon' : 'evening'
     return timeOfDay
   }
+
+  const [data, setData] = useState<SearchResponse>()
+  const searchSongs = async (query: string) => {
+    try {
+      const response = await axios.get(
+        `https://saavn.dev/api/search?query=${query}`
+      )
+      setData(response.data)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }
+
+  useEffect(() => {
+    searchSongs('arijit singh')
+  }, [])
 
   return (
     <View style={{ flex: 1, paddingTop: insets.top }} className="bg-[#272727]">
@@ -136,41 +153,54 @@ export default function Tab() {
         <SectionHeading name="Player Design" />
         <Player />
 
-        <SectionHeading name="Made for Raghav" />
-        <ScrollView horizontal>
-          {[...Array(8)].map((elem, index) => (
-            <Music
-              key={index}
-              image="https://picsum.photos/seed/696/3000/2000"
-              name="Test"
-              extra="testing"
-            />
-          ))}
-        </ScrollView>
+        {data?.data && (
+          <>
+            <SectionHeading name="Top Query" />
+            <ScrollView horizontal>
+              {data.data.topQuery.results.map((elem, index) => (
+                <Music
+                  key={index}
+                  image={elem.image[elem.image.length - 1].url}
+                  name={elem.title}
+                  extra={elem.primaryArtists}
+                />
+              ))}
+            </ScrollView>
+          </>
+        )}
 
-        <SectionHeading name="Trending" />
-        <ScrollView horizontal>
-          {[...Array(5)].map((elem, index) => (
-            <Music
-              key={index}
-              image="https://picsum.photos/seed/696/3000/2000"
-              name="Test"
-              extra="testing"
-            />
-          ))}
-        </ScrollView>
+        {data?.data && (
+          <>
+            <SectionHeading name="songs" />
+            <ScrollView horizontal>
+              {data.data.songs.results.map((elem, index) => (
+                <Music
+                  key={index}
+                  image={elem.image[elem.image.length - 1].url}
+                  name={elem.title}
+                  extra={elem.primaryArtists}
+                />
+              ))}
+            </ScrollView>
+          </>
+        )}
 
-        <SectionHeading name="Trending" />
-        <ScrollView horizontal>
-          {[...Array(13)].map((elem, index) => (
-            <Music
-              key={index}
-              image="https://picsum.photos/seed/696/3000/2000"
-              name="Test"
-              extra="testing"
-            />
-          ))}
-        </ScrollView>
+        {data?.data && (
+          <>
+            <SectionHeading name="Artists" />
+            <ScrollView horizontal>
+              {data.data.albums.results.map((elem, index) => (
+                <Music
+                  key={index}
+                  image={elem.image[elem.image.length - 1].url}
+                  name={elem.title}
+                  extra={elem.artist}
+                />
+              ))}
+            </ScrollView>
+          </>
+        )}
+        <View className="h-32"></View>
       </ScrollView>
     </View>
   )
