@@ -16,7 +16,10 @@ const PlaylistPanel: FC<PlaylistPanelProps> = ({ name, image }) => {
         source={image}
         alt={name}
       />
-      <Text className="flex-1 text-xs font-semibold text-white ml-2">
+      <Text
+        numberOfLines={1}
+        className="flex-1 text-xs font-semibold text-white ml-2"
+      >
         {name}
       </Text>
     </View>

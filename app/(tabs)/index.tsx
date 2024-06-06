@@ -37,8 +37,25 @@ export default function Tab() {
     }
   }
 
+  function shuffleArray(array: string[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[array[i], array[j]] = [array[j], array[i]]
+    }
+  }
+
   useEffect(() => {
-    searchSongs('arijit singh')
+    const arr = [
+      'animal',
+      'arijit singh',
+      'kabir singh',
+      'maroon 5',
+      'king',
+      'marshmello',
+      'vishal mishra',
+    ]
+    shuffleArray(arr)
+    searchSongs(arr[0])
   }, [])
 
   return (
@@ -77,7 +94,7 @@ export default function Tab() {
               {showDropdown && (
                 <View
                   // onClick={() => setShowDropdown(false)}
-                  className="bg-[#282828] w-full rounded mt-1 flex items-center"
+                  className="absolute top-0 z-10 bg-[#282828] w-full rounded mt-9 flex items-center"
                 >
                   <TouchableHighlight
                     activeOpacity={0.6}
@@ -162,7 +179,7 @@ export default function Tab() {
                   key={index}
                   image={elem.image[elem.image.length - 1].url}
                   name={elem.title}
-                  extra={elem.primaryArtists}
+                  extra={elem.type}
                 />
               ))}
             </ScrollView>
@@ -187,7 +204,7 @@ export default function Tab() {
 
         {data?.data && (
           <>
-            <SectionHeading name="Artists" />
+            <SectionHeading name="Albums" />
             <ScrollView horizontal>
               {data.data.albums.results.map((elem, index) => (
                 <Music
@@ -195,6 +212,22 @@ export default function Tab() {
                   image={elem.image[elem.image.length - 1].url}
                   name={elem.title}
                   extra={elem.artist}
+                />
+              ))}
+            </ScrollView>
+          </>
+        )}
+
+        {data?.data && (
+          <>
+            <SectionHeading name="Artists" />
+            <ScrollView horizontal>
+              {data.data.artists.results.map((elem, index) => (
+                <Music
+                  key={index}
+                  image={elem.image[elem.image.length - 1].url}
+                  name={elem.title}
+                  extra={elem.description}
                 />
               ))}
             </ScrollView>

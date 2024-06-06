@@ -28,12 +28,7 @@ const Music: FC<MusicProps> = ({ name, image, extra }) => {
               <FontAwesome6 size={14} name="play" color={'white'} />
             )}
           </View> */}
-          <Image
-            source={image}
-            // style={{ width: '100%', height: '100%' }}
-            className="h-full w-full"
-            contentFit="cover"
-          />
+          <Image source={image} className="h-full w-full" contentFit="cover" />
         </View>
         <Text
           numberOfLines={1}
@@ -43,7 +38,7 @@ const Music: FC<MusicProps> = ({ name, image, extra }) => {
         </Text>
         <Text
           numberOfLines={2}
-          className="text-xs text-[#B3B3B3] tracking-wide whitespace-nowrap overflow-x-hidden text-ellipsis pb-0"
+          className="text-xs text-[#B3B3B3] tracking-wide whitespace-nowrap overflow-x-hidden text-ellipsis pb-0 h-7"
         >
           {extra}
         </Text>
