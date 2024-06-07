@@ -36,53 +36,43 @@ export default function Tab() {
     return timeOfDay
   }
 
-  class MusicApi {
-    private baseUrl: string
-
-    constructor() {
-      this.baseUrl = 'https://saavn.dev/api'
+  async function fetchData(endpoint: string, query: string) {
+    try {
+      const response = await axios.get(
+        `https://saavn.dev/api/${endpoint}?query=${query}`
+      )
+      return response.data
+    } catch (error) {
+      console.error(`Error fetching data from ${endpoint}:`, error)
+      throw error
     }
+  }
 
-    private async fetchData(endpoint: string, query: string) {
-      try {
-        const response = await axios.get(
-          `${this.baseUrl}/${endpoint}?query=${query}`
-        )
-        return response.data
-      } catch (error) {
-        console.error(`Error fetching data from ${endpoint}:`, error)
-        throw error
-      }
-    }
+  async function searchGlobal(query: string) {
+    return await fetchData('search', query)
+  }
 
-    public async searchGlobal(query: string) {
-      return await this.fetchData('search', query)
-    }
+  async function searchSong(query: string) {
+    return await fetchData('search/songs', query)
+  }
 
-    public async searchSong(query: string) {
-      return await this.fetchData('search/songs', query)
-    }
+  async function searchArtist(query: string) {
+    return await fetchData('search/artists', query)
+  }
 
-    public async searchArtist(query: string) {
-      return await this.fetchData('search/artists', query)
-    }
+  async function searchAlbum(query: string) {
+    return await fetchData('search/albums', query)
+  }
 
-    public async searchAlbum(query: string) {
-      return await this.fetchData('search/albums', query)
-    }
-
-    public async searchPlaylist(query: string) {
-      return await this.fetchData('search/playlists', query)
-    }
+  async function searchPlaylist(query: string) {
+    return await fetchData('search/playlists', query)
   }
 
   const [data, setData] = useState<SearchResponse>()
   const searchSongs = async (query: string) => {
     try {
-      const response = await axios.get(
-        `https://saavn.dev/api/search?query=${query}`
-      )
-      setData(response.data)
+      const data = await searchGlobal(query)
+      setData(data)
     } catch (error) {
       console.error('Error fetching data:', error)
     }
