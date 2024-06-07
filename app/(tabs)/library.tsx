@@ -1,3 +1,4 @@
+import Badge from '@/components/Cards/Badge'
 import Music from '@/components/Cards/Music'
 import PlaylistPanel from '@/components/Cards/PlaylistPanel'
 import SectionHeading from '@/components/Cards/SectionHeading'
@@ -136,28 +137,26 @@ export default function Tab() {
 
         <View className="flex flex-row px-3 py-2">
           <View className="flex flex-row justify-items-end text-white items-center">
-            <View className="flex-none relative border border-[#FCFCFD]/50 rounded-full mr-3 h-9 w-9">
-              <View className="flex focus:outline-none rounded-full h-full w-full items-center">
-                <Image
-                  className="aspect-square h-full w-full rounded-full"
-                  source={
-                    'https://lh3.googleusercontent.com/a/AEdFTp7pvJ8QlLi9q9I_lHMylrsWyDuaZODMG6i2hKdH=s83-c-mo'
-                  }
-                  alt=""
-                />
+            <View className="flex-row">
+              <View className="flex-none relative border border-[#FCFCFD]/50 rounded-full mr-3 h-9 w-9">
+                <View className="flex focus:outline-none rounded-full h-full w-full items-center">
+                  <Image
+                    className="aspect-square h-full w-full rounded-full"
+                    source={
+                      'https://lh3.googleusercontent.com/a/AEdFTp7pvJ8QlLi9q9I_lHMylrsWyDuaZODMG6i2hKdH=s83-c-mo'
+                    }
+                    alt=""
+                  />
+                </View>
+              </View>
+              <View className="flex-auto align-bottom my-auto mr-2 w-auto">
+                <Text className="text-2xl font-semibold text-white">
+                  Your Library
+                </Text>
               </View>
             </View>
-            <View className="flex-auto align-bottom my-auto mr-2 w-auto">
-              <Text className="text-2xl font-semibold text-white">
-                Your Library
-              </Text>
-            </View>
-            <View className="flex flex-row gap-x-5 ml-auto bg-red-400">
-              {/* <Search className='h-6 w-6' />
-              <CreatePlaylistDialog /> */}
-
+            <View className="flex flex-none flex-row gap-x-5 ml-auto">
               <TouchableOpacity
-                // style={styles.tabbarItem}
                 className="items-center justify-center h-6 w-6"
                 accessibilityRole="button"
                 // accessibilityState={isFocused ? { selected: true } : {}}
@@ -166,10 +165,9 @@ export default function Tab() {
                 // onPress={onPress}
                 // onLongPress={onLongPress}
               >
-                <FontAwesome6 size={18} name="magnifying-glass" color="white" />
+                <FontAwesome6 size={16} name="magnifying-glass" color="white" />
               </TouchableOpacity>
               <TouchableOpacity
-                // style={styles.tabbarItem}
                 className="items-center justify-center h-6 w-6"
                 accessibilityRole="button"
                 // accessibilityState={isFocused ? { selected: true } : {}}
@@ -182,6 +180,66 @@ export default function Tab() {
               </TouchableOpacity>
             </View>
           </View>
+        </View>
+        <View className="pl-3 pr-2 overflow-x-scroll">
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal>
+            <Badge
+              className="items-center text-xs font-medium mr-2 px-2.5 py-0.5"
+              textColor="text-blue-800"
+              backgroundColor="bg-blue-100"
+            >
+              Default
+            </Badge>
+            <Badge
+              className="items-center text-xs font-medium mr-2 px-2.5 py-0.5"
+              textColor="text-gray-800"
+              backgroundColor="bg-gray-100"
+            >
+              Playlists
+            </Badge>
+            <Badge
+              className="items-center text-xs font-medium mr-2 px-2.5 py-0.5"
+              textColor="text-red-800"
+              backgroundColor="bg-red-100"
+            >
+              Artists
+            </Badge>
+            <Badge
+              className="items-center text-xs font-medium mr-2 px-2.5 py-0.5"
+              textColor="text-green-800"
+              backgroundColor="bg-green-100"
+            >
+              Albums
+            </Badge>
+            <Badge
+              className="items-center text-xs font-medium mr-2 px-2.5 py-0.5"
+              textColor="text-yellow-800"
+              backgroundColor="bg-yellow-100"
+            >
+              Podcasts & Shows
+            </Badge>
+            <Badge
+              className="items-center text-xs font-medium mr-2 px-2.5 py-0.5"
+              textColor="text-indigo-800"
+              backgroundColor="bg-indigo-100"
+            >
+              Indigo
+            </Badge>
+            <Badge
+              className="items-center text-xs font-medium mr-2 px-2.5 py-0.5"
+              textColor="text-purple-800"
+              backgroundColor="bg-purple-100"
+            >
+              Purple
+            </Badge>
+            <Badge
+              className="items-center text-xs font-medium mr-2 px-2.5 py-0.5"
+              textColor="text-pink-800"
+              backgroundColor="bg-pink-100"
+            >
+              Pink
+            </Badge>
+          </ScrollView>
         </View>
       </LinearGradient>
       <ScrollView className="bg-[#121212]">
