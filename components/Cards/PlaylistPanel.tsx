@@ -9,7 +9,7 @@ interface PlaylistPanelProps {
 
 const PlaylistPanel: FC<PlaylistPanelProps> = ({ name, image }) => {
   return (
-    <View className="flex flex-row h-12 bg-[#282828] align-middle items-center overflow-hidden rounded-md">
+    <View className="flex flex-row h-10 bg-[#282828] align-middle items-center overflow-hidden rounded-md">
       <Image
         style={{ width: 'auto', height: '100%' }}
         className="flex-none aspect-square"

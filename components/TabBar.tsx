@@ -4,7 +4,13 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import { BlurView } from 'expo-blur'
 import Player from './Cards/Player'
 
-interface TabBarProps {}
+interface TabBarProps {
+  state: any
+  descriptors: any
+  navigation: any
+}
+
+type RouteName = 'index' | 'search' | 'library'
 
 const TabBar: FC<TabBarProps> = ({ state, descriptors, navigation }) => {
   const icons = {
@@ -27,12 +33,13 @@ const TabBar: FC<TabBarProps> = ({ state, descriptors, navigation }) => {
     <BlurView
       intensity={5}
       experimentalBlurMethod="dimezisBlurView"
+      blurReductionFactor={8}
       tint="dark"
       style={styles.tabbarmain}
     >
       <Player />
       <View style={styles.tabbar}>
-        {state.routes.map((route, index) => {
+        {state.routes.map((route: any, index: number) => {
           const { options } = descriptors[route.key]
           const label =
             options.tabBarLabel !== undefined
@@ -74,7 +81,7 @@ const TabBar: FC<TabBarProps> = ({ state, descriptors, navigation }) => {
               onPress={onPress}
               onLongPress={onLongPress}
             >
-              {icons[route.name]({
+              {icons[route.name as RouteName]({
                 color: isFocused ? 'white' : 'gray',
               })}
               {/* <Text style={{ color: isFocused ? 'black' : '#222' }}>{label}</Text> */}
