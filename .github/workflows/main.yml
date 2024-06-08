@@ -16,6 +16,10 @@ jobs:
       - name: 📦 Build mobile JS
         run: pnpm run export
 
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
