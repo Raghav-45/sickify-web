@@ -51,4 +51,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build mobile JS
-        run: pnpm mobile export
+        run: pnpm run export
