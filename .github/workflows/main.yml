@@ -42,7 +42,7 @@ jobs:
     #     run: eas build --non-interactive
 
     steps:
-      - name: Checkout repository
+      - name: 🎉 Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js, pnpm and dependencies
@@ -59,5 +59,6 @@ jobs:
       - name: Create Release
         uses: CupOfTea696/gh-action-auto-release@v1.0.2
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
           files: '*/**'
