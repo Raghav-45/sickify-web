@@ -53,17 +53,17 @@ jobs:
       - name: Build mobile JS
         run: pnpm run export
 
-  release:
-    name: Create Release
-    needs: desktop-main
-    permissions:
-      contents: write
-    steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
+      release:
+        name: Create Release
+        needs: desktop-main
+        permissions:
+          contents: write
+        steps:
+          - name: Download artifacts
+            uses: actions/download-artifact@v4
 
-      - name: Create Release
-        uses: CupOfTea696/gh-action-auto-release@v1.0.2
-        with:
-          draft: true
-          files: '*/**'
+          - name: Create Release
+            uses: CupOfTea696/gh-action-auto-release@v1.0.2
+            with:
+              draft: true
+              files: '*/**'
