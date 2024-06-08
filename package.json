@@ -10,6 +10,7 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
+    "export": "expo export",
     "no-cache": "expo start -c"
   },
   "jest": {
