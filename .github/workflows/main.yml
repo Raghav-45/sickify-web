@@ -53,8 +53,7 @@ jobs:
       - name: Build mobile JS
         run: pnpm run export
 
-      release:
-        name: Create Release
+      - name: Create Release
         needs: desktop-main
         permissions:
           contents: write
