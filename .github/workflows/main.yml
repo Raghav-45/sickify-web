@@ -4,43 +4,6 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
-    # steps:
-    #   - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-    #   - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-    #   - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-    #   - name: Check out repository code
-    #     uses: actions/checkout@v4
-    #   - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-    #   - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-    #   - name: List files in the repository
-    #     run: |
-    #       ls ${{ github.workspace }}
-    #   - run: echo "🍏 This job's status is ${{ job.status }}."
-
-    # steps:
-    #   - name: 🏗 Setup repo
-    #     uses: actions/checkout@v3
-
-    #   - name: 🏗 Setup Node
-    #     uses: actions/setup-node@v3
-    #     with:
-    #       node-version: 18.x
-    #       # cache: yarn
-    #   - name: Install PNPM
-    #     run: npm i -g pnpm
-
-    #   - name: 🏗 Setup EAS
-    #     uses: expo/expo-github-action@v8
-    #     with:
-    #       eas-version: latest
-    #       token: ${{ secrets.EXPO_TOKEN }}
-
-    #   - name: 📦 Install dependencies
-    #     run: pnpm i
-
-    #   - name: 🚀 Build app
-    #     run: eas build --non-interactive
-
     steps:
       - name: 🎉 Checkout repository
         uses: actions/checkout@v4
@@ -53,12 +16,29 @@ jobs:
       - name: Build mobile JS
         run: pnpm run export
 
+      # - name: Download artifacts
+      #   uses: actions/download-artifact@v4
+
+      # - name: Create Release
+      #   uses: CupOfTea696/gh-action-auto-release@v1.0.2
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     draft: true
+      #     files: '*/**'
+
+  release:
+    runs-on: ubuntu-latest
+    name: Create Release
+    needs: desktop-main
+    permissions:
+      contents: write
+    steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
 
       - name: Create Release
-        uses: CupOfTea696/gh-action-auto-release@v1.0.2
+        # TODO: Change to stable version when available
+        uses: softprops/action-gh-release@4634c16e79c963813287e889244c50009e7f0981
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
           files: '*/**'
