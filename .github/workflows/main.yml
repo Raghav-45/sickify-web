@@ -36,7 +36,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
-        run: yarn install
+        run: pnpm i
 
       - name: 🚀 Build app
         run: eas build --non-interactive
