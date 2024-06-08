@@ -21,10 +21,10 @@ runs:
     #     node-version-file: '.nvmrc'
 
     - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-          # cache: yarn
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+        # cache: yarn
 
     - name: Install pnpm deps
       shell: ${{ runner.os == 'Windows' && 'powershell' || 'bash' }}
