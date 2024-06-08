@@ -25,7 +25,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-          cache: pnpm
+          # cache: yarn
+      - name: Install PNPM
+        run: npm i -g pnpm
 
       - name: 🏗 Setup EAS
         uses: expo/expo-github-action@v8
