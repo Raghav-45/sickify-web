@@ -1,7 +1,6 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on:
-  workflow_dispatch
+on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -9,12 +8,12 @@ jobs:
       - name: 🎉 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js, pnpm and dependencies
+      - name: 🏗 Setup Node.js, pnpm and dependencies
         uses: ./.github/actions/setup-pnpm
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build mobile JS
+      - name: 📦 Build mobile JS
         run: pnpm run export
 
       - name: Upload artifact
@@ -27,7 +26,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-    name: Create Release
+    name: 🚀 Create Release
     needs: Explore-GitHub-Actions
     permissions:
       contents: write
