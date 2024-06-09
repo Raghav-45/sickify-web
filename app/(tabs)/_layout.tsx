@@ -1,6 +1,5 @@
 import TabBar from '@/components/TabBar'
 import { FontAwesome6 } from '@expo/vector-icons'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Tabs } from 'expo-router'
 
 export default function TabLayout() {
